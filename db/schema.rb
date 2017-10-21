@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021182638) do
+ActiveRecord::Schema.define(version: 20171021190920) do
 
   create_table "elements", force: :cascade do |t|
     t.string "name"
@@ -23,6 +23,10 @@ ActiveRecord::Schema.define(version: 20171021182638) do
     t.string "yVelocity"
     t.string "x"
     t.string "y"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "results", force: :cascade do |t|
@@ -34,6 +38,21 @@ ActiveRecord::Schema.define(version: 20171021182638) do
   create_table "tasks", force: :cascade do |t|
     t.string "taskname"
     t.string "author"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "value_id"
+    t.integer "element_id"
+    t.integer "result_id"
+    t.index ["element_id"], name: "index_tasks_on_element_id"
+    t.index ["result_id"], name: "index_tasks_on_result_id"
+    t.index ["value_id"], name: "index_tasks_on_value_id"
+  end
+
+  create_table "values", force: :cascade do |t|
+    t.string "name"
+    t.string "known"
+    t.string "place"
+    t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
