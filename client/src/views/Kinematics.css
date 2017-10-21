@@ -90,6 +90,15 @@
   bottom: 0;
   padding: 0 20px 5px;
   box-sizing: border-box;
+  display:flex;
+}
+.result > h3 {
+  position: absolute;
+  bottom: 160px;
+  left: 50vw;
+}
+.result >div {
+  margin: 5px;
 }
 .drop-area{
   height: 100px;
