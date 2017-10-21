@@ -5,6 +5,10 @@ class UserProvider < ActiveRecord::Base
     user = UserProvider.where(provider: auth.provider, uid: auth.uid).first
 
     if user.nil?
+      new_user = create_new_user(auth)
+      create_user_provider(auth, new_user)
+
+
       registered_user = User.where(email: auth.info.email).first
 
       if registered_user.nil?
@@ -19,7 +23,7 @@ class UserProvider < ActiveRecord::Base
   end
 
   def self.create_new_user(auth)
-    User.new(username: auth.extra.raw_info.name,
+    User.create!(username: auth.extra.raw_info.name,
              email: auth.info.email,
              password: Devise.friendly_token[0, 20])
   end
@@ -30,5 +34,5 @@ class UserProvider < ActiveRecord::Base
       uid: auth.uid,
       user_id: user.id
     )
-  end  
+  end
 end
