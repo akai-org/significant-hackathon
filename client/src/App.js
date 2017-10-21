@@ -12,7 +12,6 @@ import Main from './views/Main';
 import Naviagtion from './components/Navigation';
 
 /* Exercises */
-import Plane from './views/exercises/Plane';
 import Kinematics from './views/Kinematics';
 
 class App extends Component {

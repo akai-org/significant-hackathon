@@ -1,3 +1,7 @@
+import React, { Component } from 'react';
+
+import Equation from './Equation';
+
 class Result {
   constructor(result, elementsArray){
     console.log("Result.constructor: start");

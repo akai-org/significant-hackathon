@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './Kinematics.css';
-import Equation from "../Equation";
+import Equation from '../components/Equation';
+import Result from '../components/Result';
+import Element from '../components/Element';
+
 const math = require('mathjs');
 const dragula = require('dragula');
-
-import
 
 const Value = (props) => (
   <div draggable className="element">
