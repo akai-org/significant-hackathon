@@ -221,8 +221,7 @@ class Kinematics extends Component {
         });
         this.setState({elementsArray : elementsArray});
         this.forceUpdate();
-      })
-      .then(data => {
+        
         console.log("printing resultsArray");
         let resultsArray = [];
         data.Results.forEach( (e) => {
