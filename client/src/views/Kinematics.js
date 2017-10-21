@@ -25,7 +25,6 @@ class Element extends Component {
 
     this.imgStyle = {
         width: this.xSize,
-        //height: this.ySize,
         position: 'absolute',
         top: this.yStart,
         left: this.xStart,
@@ -34,10 +33,7 @@ class Element extends Component {
   }
   render() {
     return (
-      <div>
-        <img src={this.data.imageUrl} style={this.imgStyle}/>
-        <h1>{this.name}</h1>
-      </div>
+      <img src={this.data.imageUrl} style={this.imgStyle}/>
     )
   }
 }
