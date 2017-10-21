@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021180926) do
+ActiveRecord::Schema.define(version: 20171021181814) do
+
+  create_table "elements", force: :cascade do |t|
+    t.string "name"
+    t.string "xSize"
+    t.string "ySize"
+    t.string "xStart"
+    t.string "yStart"
+    t.string "isConstant"
+    t.string "xVelocity"
+    t.string "yVelocity"
+    t.string "x"
+    t.string "y"
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string "taskname"
