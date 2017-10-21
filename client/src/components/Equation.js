@@ -4,6 +4,12 @@
 const math = require('mathjs');
 
 class Equation {
+    constructor(equation){
+        let equaltyIndex = equation.indexOf('=');
+        this.leftSide = equation.substring(0, equaltyIndex);
+        this.rightSide = equation.substring(equaltyIndex + 1);
+    }
+
     static calculate(equation, elementsArray){
         console.log("Equation.calculate: start");
         let helper = equation;
