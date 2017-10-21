@@ -121,36 +121,43 @@ class Result {
 }
 
 class Element extends Component {
-  constructor(element){
+  constructor(){
     super();
+  }
 
-    console.log(this.props);
-
-    this.data = element;
-
-    for(const key in this.data) {
-      this[key] = this.data[key];
+  componentWillMount() {
+    if(!this.props) return false;
+    for(const key in this.props.data) {
+      console.log(this.props.data);
+      this[key] = this.props.data[key];
     }
 
     this.imgStyle = {
-        width: this.xSize,
-        position: 'absolute',
-        top: this.yStart,
-        left: this.xStart,
-     };
-
+      width: this.xSize,
+      position: 'absolute',
+      top: this.yStart,
+      left: this.xStart,
+    };
   }
 
   render() {
     return (
-      <img src={this.data.imageUrl} style={this.imgStyle}/>
+      <img src={this.props.data.imageUrl} style={this.imgStyle}/>
     )
   }
 }
 
+const Value = (props) => {
+  <div class="element">
+    <div class="label">{props.name}</div>
+    { props.known ? <div class="known">&#10004</div> : <div class="unknown">?</div> }
+  </div>
+};
+
 class Kinematics extends Component {
   constructor(){
     super();
+
     this.state = {
       elementsArray: []
     };
@@ -160,15 +167,14 @@ class Kinematics extends Component {
     fetch('https://akai-math.herokuapp.com/api/task')
       .then(res => res.json())
       .then(data => {
-        console.log("json:");
-        console.log(data);
-
         let elementsArray = [];
         data.Elements.forEach( (e) => {
-          elementsArray.push(new Element(e));
+          elementsArray.push(e);
         });
-
-        this.setState({elementsArray : elementsArray});
+        this.setState({
+          elementsArray : elementsArray,
+          values : data.Values
+        });
         this.forceUpdate();
 
         console.log("printing resultsArray");
@@ -176,7 +182,6 @@ class Kinematics extends Component {
         data.Results.forEach( (e) => {
             resultsArray.push(new Result(e));
         });
-
         this.setState({resultsArray : resultsArray});
         this.forceUpdate();
         });
@@ -187,25 +192,30 @@ class Kinematics extends Component {
   render() {
     if (!this.state.elementsArray[0]) return '';
 
+    const elements = [];
+    for (let i=0; i < this.state.elementsArray.length; i++) {
+      elements.push(<Element data={this.state.elementsArray[i]} />);
+    }
 
+    const values = [];
+    for (let i=0; i < this.state.values.length; i++) {
+      //values.push(<Value data={this.state.values[i]} />);
+    }
 
-    console.log(this.state);
     return (
       <div className="lesson">
         <div className="cartesian">
           <div className="y-axis-description">y axis</div>
           <div className="y-axis"></div>
           <div className="board">
-            { this.state.elementsArray[0].render() }
-            { this.state.elementsArray[1].render() }
-            { this.state.elementsArray[2].render() }
+            {elements}
           </div>
           <div className="x-axis"></div>
           <div className="x-axis-description">x axis</div>
         </div>
         <div className="elements">
           <h3>Elements</h3>
-
+          {values}
         </div>
         <div className="result">
           <h3>Result</h3>
