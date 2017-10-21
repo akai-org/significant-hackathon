@@ -1,5 +1,10 @@
 module Api
   class TasksController < ApplicationController
+
+    def show
+      @task = Task.find(params[:id])
+    end
+
     def index
 
       var = '{
@@ -81,4 +86,6 @@ module Api
       render json: var
     end
   end
+
+
 end
