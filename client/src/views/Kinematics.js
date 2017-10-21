@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Kinematics.css';
 import Equation from "../Equation";
 const math = require('mathjs');
+const dragula = require('dragula');
 
 class Result {
     constructor(result, elementsArray){
@@ -41,12 +42,10 @@ class Result {
         }
         else if(this.relation.localeCompare('isIn') === 0)
         {
-            console.log('isIn relations');
-
             let left = Element.getElement(this.leftSide, elementsArray);
             let right = Element.getElement(this.rightSide, elementsArray);
 
-            // return Element.isElementInAnotherElement(left, right);
+            return Element.isElementInAnotherElement(left, right);
         }
         else
         {
@@ -114,24 +113,27 @@ class Element extends Component {
         }
         let objectName = reference;
 
-        console.log("objectName = " + objectName);
+        let result;
 
-        elementsArray.forEach(o => {
-                if(o.name.localeCompare(objectName) === 0) {
-                    console.log("Element.getElement returns:");
-                    console.log(o);
-                    return o;
-                }
+        elementsArray.forEach((o, i) => {
+                if(o.name.localeCompare(objectName) === 0)
+                    result = i;
             }
         );
+
+        return result;
     }
 }
 
 const Value = (props) => (
-  <div className="element">
+  <div draggable className="element">
     <div className="label">{ props.data.name}</div>
     { props.data.known ? <div className="known">&#x2713;</div> : <div className="unknown">?</div> }
   </div>
+);
+
+const DropArea = (props) => (
+  <div className="drop-area"></div>
 );
 
 class Kinematics extends Component {
@@ -153,7 +155,8 @@ class Kinematics extends Component {
         });
         this.setState({
           elementsArray : elementsArray,
-          values : data.Values
+          values : data.Values,
+          results : data.Results
         });
         this.forceUpdate();
 
@@ -169,6 +172,10 @@ class Kinematics extends Component {
     console.log(this.resultsArray);
   }
 
+  componentDidUpdate() {
+    dragula([document.querySelector('.drop-area'), document.querySelector('.elements')]);
+  }
+
   render() {
     if (!this.state.elementsArray[0]) return '';
 
@@ -180,6 +187,11 @@ class Kinematics extends Component {
     const values = [];
     for (let i=0; i < this.state.values.length; i++) {
       values.push(<Value key={i} data={this.state.values[i]} />);
+    }
+
+    const results = [];
+    for (let i=0; i < this.state.values.length; i++) {
+      results.push(<DropArea key={i} data={this.state.results[i]} />);
     }
 
     return (
@@ -199,12 +211,14 @@ class Kinematics extends Component {
         </div>
         <div className="result">
           <h3>Result</h3>
-          <div className="drop-area">
-          </div>
-
+          {results}
         </div>
       </div>
     );
+  }
+
+  start(){
+
   }
 
 }
