@@ -1,17 +1,86 @@
 import React, { Component } from 'react';
-const math = require('mathjs');
 import './Kinematics.css';
+
+const math = require('mathjs');
 
 class Result {
     constructor(result){
         this.leftSide=result.leftSide;
         this.relation=result.relation;
         this.rightSide=result.rightSide;
+
+        this.isMet = this.isTrue();
     }
 
     isTrue(){
+        if(this.relation.localeCompare("=") === 0)
+        {
+            return this.calculate(this.leftSide) === this.calculate(this.rightSide);
+        }
+        else if(this.relation.localeCompare(">="))
+        {
+            return this.calculate(this.leftSide) >= this.calculate(this.rightSide);
+        }
+        else if(this.relation.localeCompare(">"))
+        {
+            return this.calculate(this.leftSide) > this.calculate(this.rightSide);
+        }
+        else if(this.relation.localeCompare("<="))
+        {
+            return this.calculate(this.leftSide) <= this.calculate(this.rightSide);
+        }
+        else if(this.relation.localeCompare("<"))
+        {
+            return this.calculate(this.leftSide) < this.calculate(this.rightSide);
+        }
+        else if(this.relation.localeCompare("isIn"))
+        {
+            // this.calculate(this.leftSide)  this.calculate(this.rightSide);
+        }
+        else
+        {
+            console.log("Relation unknown " + this.relation);
+        }
     }
 
+    calculate(equation){
+        let helper = equation;
+        while(helper.indexOf('%') !== -1)
+        {
+            helper = this.replaceReferenceWithValue(helper);
+        }
+
+        let result = math.eval(helper);
+        return result;
+    }
+
+    replaceReferenceWithValue(helper)
+    {
+        let firstPercent = helper.indexOf('%');
+        let secondPercent = helper.indexOf('%', firstPercent + 1);
+
+        let oldSubString = helper.substring(firstPercent, secondPercent - firstPercent + 1);
+        let newSubString = this.getReferenceValue(oldSubString);
+
+        let result = helper.replace(oldSubString, newSubString);
+        return result;
+    }
+
+    getReferenceValue(reference) {
+        reference = reference.replaceAll('%', '');
+        let objectName = reference.substring(0, reference.indexOf('.'))
+        let fieldName = reference.substring(reference.indexOf('.') + 1);
+
+        let result = '';
+        Element.elementsArray.forEach(o => {
+                if(o.name.localeCompare(objectName) === 0) {
+                    result = o[fieldName];
+                }
+            }
+        );
+
+        return result;
+    }
 }
 
 class Element extends Component {
@@ -140,22 +209,30 @@ class Kinematics extends Component {
     ]
 }`);
 
-
   }
 
   componentWillMount() {
     fetch('https://akai-math.herokuapp.com/api/task')
-      .then(res=>res.json())
+      .then(res => res.json())
       .then(data => {
-        //console.log(data);
         let elementsArray = [];
         data.Elements.forEach( (e) => {
           elementsArray.push(new Element(e));
         });
-        //console.log(elementsArray);
         this.setState({elementsArray : elementsArray});
         this.forceUpdate();
-      });
+      })
+      .then(data => {
+        console.log("printing resultsArray");
+        let resultsArray = [];
+        data.Results.forEach( (e) => {
+            resultsArray.push(new Result(e));
+        });
+        this.setState({resultsArray : resultsArray});
+        this.forceUpdate();
+        });
+
+    console.log(this.resultsArray);
   }
 
   render() {
