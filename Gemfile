@@ -17,6 +17,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'activeadmin'
+gem 'devise'
+
 group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
