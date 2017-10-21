@@ -41,12 +41,10 @@ class Result {
         }
         else if(this.relation.localeCompare('isIn') === 0)
         {
-            console.log('isIn relations');
-
             let left = Element.getElement(this.leftSide, elementsArray);
             let right = Element.getElement(this.rightSide, elementsArray);
 
-            // return Element.isElementInAnotherElement(left, right);
+            return Element.isElementInAnotherElement(left, right);
         }
         else
         {
@@ -114,16 +112,15 @@ class Element extends Component {
         }
         let objectName = reference;
 
-        console.log("objectName = " + objectName);
+        let result;
 
-        elementsArray.forEach(o => {
-                if(o.name.localeCompare(objectName) === 0) {
-                    console.log("Element.getElement returns:");
-                    console.log(o);
-                    return o;
-                }
+        elementsArray.forEach((o, i) => {
+                if(o.name.localeCompare(objectName) === 0)
+                    result = i;
             }
         );
+
+        return result;
     }
 }
 
@@ -205,6 +202,10 @@ class Kinematics extends Component {
         </div>
       </div>
     );
+  }
+
+  start(){
+
   }
 
 }

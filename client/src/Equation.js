@@ -21,19 +21,11 @@ class Equation {
 
     static replaceReferenceWithValue(helper, elementsArray)
     {
-        console.log('Equation.replaceReferenceWithValue: elementsArray is');
-        console.log(elementsArray);
-        console.log("Equation.replaceReferenceWithValue: helper is " + helper);
         let firstPercent = helper.indexOf('%');
         let secondPercent = helper.indexOf('%', firstPercent + 1);
 
-        console.log("Equation.replaceReferenceWithValue: first and second" + firstPercent + ", " + secondPercent);
-
         let oldSubString = helper.substring(firstPercent, secondPercent - firstPercent + 1);
-        console.log("Equation.replaceReferenceWithValue: oldSubString : " + oldSubString);
         let newSubString = Equation.getReferenceValue(oldSubString, elementsArray);
-
-        console.log("Equation.replaceReferenceWithValue: old and new" + oldSubString + ", " + newSubString);
 
         let result = helper.replace(oldSubString, newSubString);
 
@@ -50,26 +42,20 @@ class Equation {
         let objectName = reference.substring(0, reference.indexOf('.'));
         let fieldName = reference.substring(reference.indexOf('.') + 1);
 
-        console.log('Equation.getReferenceValue: objectName is ' + objectName);
-        console.log('Equation.getReferenceValue: fieldName is ' + fieldName);
-
-        console.log('Equation.getReferenceValue: looking in elementsArray:');
-        console.log(elementsArray);
-        console.log('Equation.getReferenceValue: foreach starts');
         let result = '';
         elementsArray.forEach(o => {
                 if(o.name.localeCompare(objectName) === 0) {
-                    console.log('found matching name for ');
-                    console.log(o);
                     result = o[fieldName];
                 }
             }
         );
 
-        console.log('Equation.getReferenceValue: returns: ');
-        console.log(result);
-        console.log("AFASFASD");
+        if(result.localeCompare('') === 0)
+        {
+            result = '0';
+        }
 
+        console.log('Equation.getReferenceValue: returns: ' + result);
         return result;
     }
 }
