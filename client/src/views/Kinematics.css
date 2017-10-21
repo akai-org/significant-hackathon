@@ -1,12 +1,18 @@
+.lesson {
+  height: calc(100vh - 32px);
+  position: relative;
+}
 .cartesian {
-  min-height:70vh;
-  width: 100%;
-  @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+  position: relative;
+  height: calc(100% - 150px);
+  width: calc(100% - 250px);
+  left:0;
   font-family: 'Gloria Hallelujah', cursive;
+  float: left;
 }
 
 .y-axis {
-  height: 90vh;
+  height: calc(100% - 40px);
   width: 3px;
   background-color: black;
   position: absolute;
@@ -28,12 +34,12 @@
 }
 .y-axis-description {
   position: absolute;
-  top: 20px;
-  left: 40px;
+  top: 30px;
+  left: 70px;
 }
 
 .x-axis {
-  width: 90vw;
+  width: calc(100% - 50px);
   height: 3px;
   background-color: black;
   position: absolute;
@@ -54,7 +60,7 @@
 }
 .x-axis-description {
   position: absolute;
-  bottom: 35px;
+  bottom: 45px;
   right: 30px;
 }
 
@@ -64,4 +70,23 @@
   position: absolute;
   left: 63px;
   bottom: 50px;
+}
+
+.elements{
+  background-color: red;
+  height: calc(100% - 150px);
+  width: 250px;
+  position: relative;
+  top: 0;
+  float: right;
+
+}
+
+.result {
+  background-color: green;
+  height: 150px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+
 }
