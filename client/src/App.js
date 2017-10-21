@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+import 'dragula/dist/dragula.css';
 
 import Main from './views/Main';
 import Naviagtion from './components/Navigation';
@@ -25,6 +26,7 @@ class App extends Component {
             <Route path="/lesson" component={Kinematics}></Route>
           </div>
         </Router>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
       </div>
     );
   }

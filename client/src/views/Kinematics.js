@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Kinematics.css';
 import Equation from "../Equation";
-const math = require('mathjs');
+const dragula = require('dragula');
 
 class Result {
     constructor(result, elementsArray){
@@ -128,10 +128,14 @@ class Element extends Component {
 }
 
 const Value = (props) => (
-  <div class="element">
-    <div class="label">{props.name}</div>
-    { props.known ? <div class="known">&#10004</div> : <div class="unknown">?</div> }
+  <div draggable className="element">
+    <div className="label">{props.name}</div>
+    { props.known ? <div className="known">&#10004</div> : <div className="unknown">?</div> }
   </div>
+);
+
+const DropArea = (props) => (
+  <div className="drop-area"></div>
 );
 
 class Kinematics extends Component {
@@ -153,7 +157,8 @@ class Kinematics extends Component {
         });
         this.setState({
           elementsArray : elementsArray,
-          values : data.Values
+          values : data.Values,
+          results : data.Results
         });
         this.forceUpdate();
 
@@ -169,6 +174,10 @@ class Kinematics extends Component {
     console.log(this.resultsArray);
   }
 
+  componentDidUpdate() {
+    dragula([document.querySelector('.drop-area'), document.querySelector('.elements')]);
+  }
+
   render() {
     if (!this.state.elementsArray[0]) return '';
 
@@ -180,6 +189,11 @@ class Kinematics extends Component {
     const values = [];
     for (let i=0; i < this.state.values.length; i++) {
       values.push(<Value key={i} data={this.state.values[i]} />);
+    }
+
+    const results = [];
+    for (let i=0; i < this.state.values.length; i++) {
+      results.push(<DropArea key={i} data={this.state.results[i]} />);
     }
 
     return (
@@ -199,9 +213,7 @@ class Kinematics extends Component {
         </div>
         <div className="result">
           <h3>Result</h3>
-          <div className="drop-area">
-          </div>
-
+          {results}
         </div>
       </div>
     );
