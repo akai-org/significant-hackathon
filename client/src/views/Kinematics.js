@@ -93,6 +93,7 @@ class Kinematics extends Component {
           <h3>Elements</h3>
           {values}
         </div>
+        <button>START</button>
         <div className="result">
           <h3>Result</h3>
           {results}

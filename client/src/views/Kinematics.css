@@ -73,7 +73,7 @@
 }
 
 .elements{
-  height: calc(100% - 150px);
+  height: calc(100% - 260px);
   width: 250px;
   position: relative;
   top: 0;
@@ -90,6 +90,15 @@
   bottom: 0;
   padding: 0 20px 5px;
   box-sizing: border-box;
+  display:flex;
+}
+.result > h3 {
+  position: absolute;
+  bottom: 160px;
+  left: 50vw;
+}
+.result >div {
+  margin: 5px;
 }
 .drop-area{
   height: 100px;
@@ -134,4 +143,31 @@ img {
 
 .known{
   color: green;
+}
+
+button {
+  width: 100px;
+  height: 80px;
+  border-radius: 30px;
+  box-shadow: 0 15px 0 rgba(0,0,0, .3);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #96d700;
+  color: white;
+  top:0px;
+  right: -50px;
+  transition: all .3s;
+  border: none;
+  outline: none;
+  font-size: 26px;
+}
+button:hover {
+  cursor: pointer;
+}
+button:active{
+  box-shadow: 0 7px 0 rgba(0,0,0, .3);
+  top:8px;
 }
