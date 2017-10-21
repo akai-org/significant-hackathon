@@ -11,11 +11,12 @@ class Element extends Component {
       this[key] = this.props.data[key];
     }
 
+    console.log(this.props);
     this.imgStyle = {
-      width: this.xSize,
+      width: `${this.xSize}%`,
       position: 'absolute',
-      top: this.yStart,
-      left: this.xStart,
+      top: `${this.yStart}%`,
+      left: `${this.xStart}%`,
     };
   }
 
