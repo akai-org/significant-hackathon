@@ -161,7 +161,6 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
-      backend-admin
     orm_adapter (0.5.0)
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -169,7 +168,6 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
-        backend-api
     parallel (1.12.0)
     parser (2.4.0.0)
       ast (~> 2.2)
