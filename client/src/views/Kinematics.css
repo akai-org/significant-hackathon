@@ -102,3 +102,7 @@
 h3 {
   margin-top: 0;
 }
+
+img {
+  transform: translateX(-50%) translateY(-50%);
+}
