@@ -28,15 +28,22 @@ class Kinematics extends Component {
   }
 
   componentWillMount() {
-    fetch('https://akai-math.herokuapp.com/api/tasks')
+    fetch('https://akai-math.herokuapp.com/api/tasks/1')
       .then(res => res.json())
       .then(data => {
         let elementsArray = [];
         data.Elements.forEach( (e) => {
           elementsArray.push(e);
         });
+
+        const newElementsArray = elementsArray.map( (obj) => {
+          let newObj = obj;
+          newObj.imageUrl = `https://akai-math.herokuapp.com${obj.imageUrl}`;
+          return newObj;
+        } );
+
         this.setState({
-          elementsArray : elementsArray,
+          elementsArray : newElementsArray,
           values : data.Values,
           results : data.Results
         });
@@ -94,7 +101,7 @@ class Kinematics extends Component {
           <h3>Elements</h3>
           {values}
         </div>
-        <button>START</button>
+        <button onClick={this.start}>START</button>
         <div className="result">
           <h3>Result</h3>
           {results}
