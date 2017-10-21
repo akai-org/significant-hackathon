@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
-import { Router, Route } from 'react-router'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
 import Main from './views/Main';
 
+/* Exercises */
+import Plane from './views/exercises/Plane';
+
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <Main />
-      </div>
+      <Router>
+        <div>
+          <Route exact path="/" component={Main}></Route>
+          <Route exact path="/plane" component={Plane}></Route>
+        </div>
+      </Router>
     );
   }
 }
