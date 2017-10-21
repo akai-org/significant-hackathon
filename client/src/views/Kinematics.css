@@ -106,3 +106,28 @@ h3 {
 img {
   transform: translateX(-50%) translateY(-50%);
 }
+
+.unknown{
+  color: orange;
+  display: none;
+}
+
+.element{
+  height: 100px;
+  width: 100px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0, .5);
+
+}
+.element:hover{
+  cursor:pointer;
+}
+
+.known{
+  color: green;
+}
