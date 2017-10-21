@@ -17,6 +17,8 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
+gem 'devise'
+
 group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
