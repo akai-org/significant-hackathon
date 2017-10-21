@@ -4,7 +4,7 @@ const Plane = () => (
   <div>
     <h2>Plane</h2>
     <div className="game">
-      <div className="plane"></div>
+      <img src="/images/Plane.png" alt="Plane"/>
     </div>
   </div>
 )

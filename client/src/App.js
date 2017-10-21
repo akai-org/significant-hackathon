@@ -12,6 +12,7 @@ import Naviagtion from './components/Navigation';
 
 /* Exercises */
 import Plane from './views/exercises/Plane';
+import Kinematics from './views/Kinematics';
 
 class App extends Component {
   render() {
@@ -20,8 +21,8 @@ class App extends Component {
         <Router>
           <div>
             <Naviagtion />
-            <Route path="/" component={Main}></Route>
-            <Route path="/lesson/plane" component={Plane}></Route>
+            <Route exact path="/" component={Main}></Route>
+            <Route path="/lesson" component={Kinematics}></Route>
           </div>
         </Router>
       </div>
