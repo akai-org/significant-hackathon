@@ -2,7 +2,8 @@ module Api
   class TasksController < ApplicationController
 
     def show
-      @task = Task.find(params[:id])
+      @task = Task.includes(:values, :elements, :results).
+          find(params[:id])
       render 'api/show'
     end
 
