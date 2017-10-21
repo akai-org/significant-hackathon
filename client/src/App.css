@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  background: url('Untitled_Artwork.png');
+  min-width: 100vw;
+  min-height: 200vh;
+  background-size: 80%;
+  background-repeat-y: repeat;
 }
 
 .App-logo {
