@@ -1,10 +1,23 @@
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #eee;
+  background-image: linear-gradient(#eeeeee, #e7e7e7);
+}
+
 .App {
   text-align: center;
-  background: url('Untitled_Artwork.png');
-  min-width: 100vw;
-  min-height: 200vh;
-  background-size: 80%;
-  background-repeat-y: repeat;
+  height:100vh;
+  width:100vw;
+  background-color: transparent;
+  background-image:
+    linear-gradient(0deg, transparent 24%, #83bde7 25%, #83bde7 26%, transparent 27%, transparent 74%, #83bde7 75%, #83bde7 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, #83bde7 25%, #83bde7 26%, transparent 27%, transparent 74%, #83bde7 75%, #83bde7 76%, transparent 77%, transparent);
+  background-size:50px 50px;
 }
 
 .App-logo {
