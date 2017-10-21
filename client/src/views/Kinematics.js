@@ -16,29 +16,28 @@ class Result {
 class Element extends Component {
   constructor(element){
     super();
+
     this.data = element;
-    this.name = this.data.name;
-    this.xSize = this.data.xSize;
-    this.ySize = this.data.ySize;
-    this.xStart = this.data.xStart;
-    this.yStart = this.data.yStart;
-    this.isConstant = this.data.isConstant;
-    this.xVelocity = this.data.xVelocity;
-    this.yVelocity = this.data.yVelocity;
-    this.x = this.data.x;
-    this.y = this.data.y;
-    this.imageUrl = this.data.imageUrl;
+
+    for(const key in this.data) {
+      this[key] = this.data[key];
+    }
+
     this.imgStyle = {
-        width:this.xSize,
-        height:this.ySize
-      };
+        width: this.xSize,
+        //height: this.ySize,
+        position: 'absolute',
+        top: this.yStart,
+        left: this.xStart,
+     };
+
   }
   render() {
     return (
-        <div>
-            <img src={this.data.imageUrl} style={this.imgStyle}/>
-            <h1>{this.name}</h1>
-        </div>
+      <div>
+        <img src={this.data.imageUrl} style={this.imgStyle}/>
+        <h1>{this.name}</h1>
+      </div>
     )
   }
 }
@@ -54,6 +53,7 @@ class Kinematics extends Component {
     "Elements":[
         {
             "name":"Tomato",
+            "imageUrl":"/images/Tomato.png",
             "xSize":"4%",
             "ySize":"2%",
             "xStart":"Plane.xStart",
@@ -66,6 +66,7 @@ class Kinematics extends Component {
         },
         {
             "name":"Plane",
+            "imageUrl":"/images/Plane.png",
             "xSize":"20%",
             "ySize":"10%",
             "xStart":"80%",
@@ -78,6 +79,7 @@ class Kinematics extends Component {
         },
         {
             "name":"Pot",
+            "imageUrl":"/images/Pot.png",
             "xSize":"5%",
             "ySize":"2%",
             "xStart":"90%",
@@ -137,7 +139,9 @@ class Kinematics extends Component {
           <div className="y-axis-description">y axis</div>
           <div className="y-axis"></div>
           <div className="board">
-
+            { this.elementsArray[0].render() }
+            { this.elementsArray[1].render() }
+            { this.elementsArray[2].render() }
           </div>
           <div className="x-axis"></div>
           <div className="x-axis-description">x axis</div>
