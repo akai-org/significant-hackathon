@@ -12,5 +12,16 @@ ActiveAdmin.register Element do
 #   permitted
 # end
   belongs_to :task
-  permit_params :name, :xSize, :ySize, :xStart, :yStart, :isConstant, :xVelocity, :yVelocity, :x, :y
+  fields = [:name, :xSize, :ySize, :xStart, :yStart, :isConstant, :xVelocity, :yVelocity, :x, :y, :image]
+  permit_params fields
+
+  form do |f|
+    f.inputs "Details" do
+      fields.each do |field|
+        f.input field
+      end
+    end
+
+    f.actions
+  end
 end
