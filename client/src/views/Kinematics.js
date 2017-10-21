@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+const math = require('mathjs');
 import './Kinematics.css';
 
 class Result {
