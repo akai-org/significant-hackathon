@@ -1,122 +1,58 @@
 import React, { Component } from 'react';
 import './Kinematics.css';
+import Equation from "../Equation";
 const math = require('mathjs');
 
 class Result {
-    constructor(result){
-        this.leftSide=result.leftSide;
-        this.relation=result.relation;
-        this.rightSide=result.rightSide;
+    constructor(result, elementsArray){
+        console.log("Result.constructor: start");
+        this.leftSide = result.leftSide;
+        this.relation = result.relation;
+        this.rightSide = result.rightSide;
 
-        this.isMet = this.isTrue();
+        this.isMet = this.isTrue(elementsArray);
     }
 
-    isTrue(){
+    isTrue(elementsArray){
         if(this.relation.localeCompare('=') === 0)
         {
             console.log('= relation');
-            return this.calculate(this.leftSide) === this.calculate(this.rightSide);
+            return Equation.calculate(this.leftSide, elementsArray) === Equation.calculate(this.rightSide, elementsArray);
         }
         else if(this.relation.localeCompare('>=') === 0)
         {
             console.log('>= relation');
-            return this.calculate(this.leftSide) >= this.calculate(this.rightSide);
+            return Equation.calculate(this.leftSide, elementsArray) >= Equation.calculate(this.rightSide, elementsArray);
         }
         else if(this.relation.localeCompare('>') === 0)
         {
             console.log('> relation');
-            return this.calculate(this.leftSide) > this.calculate(this.rightSide);
+            return Equation.calculate(this.leftSide, elementsArray) > Equation.calculate(this.rightSide, elementsArray);
         }
         else if(this.relation.localeCompare('<=') === 0)
         {
             console.log('<= relation');
-            return this.calculate(this.leftSide) <= this.calculate(this.rightSide);
+            return Equation.calculate(this.leftSide, elementsArray) <= Equation.calculate(this.rightSide, elementsArray);
         }
         else if(this.relation.localeCompare('<') === 0)
         {
             console.log('< relation');
-            return this.calculate(this.leftSide) < this.calculate(this.rightSide);
+            return Equation.calculate(this.leftSide, elementsArray) < Equation.calculate(this.rightSide, elementsArray);
         }
         else if(this.relation.localeCompare('isIn') === 0)
         {
-            console.log('isIn relation');
-            // return this.isElementInAnotherElement()
+            console.log('isIn relations');
+
+            let left = Element.getElement(this.leftSide, elementsArray);
+            let right = Element.getElement(this.rightSide, elementsArray);
+
+            // return Element.isElementInAnotherElement(left, right);
         }
         else
         {
             console.log('Relation unknown ' + this.relation);
             return false;
         }
-    }
-
-    calculate(equation){
-        let helper = equation;
-        while(helper.indexOf('%') !== -1)
-        {
-            helper = this.replaceReferenceWithValue(helper);
-        }
-
-        console.log("about to eval " + helper);
-
-        let result = math.eval(helper);
-        return result;
-    }
-
-    replaceReferenceWithValue(helper)
-    {
-        console.log("helper is " + helper);
-        let firstPercent = helper.indexOf('%');
-        let secondPercent = helper.indexOf('%', firstPercent + 1);
-
-        console.log("first and second" + firstPercent + ", " + secondPercent);
-
-        let oldSubString = helper.substring(firstPercent, secondPercent - firstPercent + 1);
-        let newSubString = this.getReferenceValue(oldSubString);
-
-        console.log("old and new" + oldSubString + ", " + newSubString);
-
-        let result = helper.replace(oldSubString, newSubString);
-
-        console.log("result : " + result);
-        return result;
-    }
-
-    isElementInAnotherElement(thisOne, inThisOne)
-    {
-        let leftX = inThisOne.x - inThisOne.xSize/2;
-        let rightX = inThisOne.x + inThisOne.xSize/2;
-
-        let upperY = inThisOne.y - inThisOne.ySize/2;
-        let lowerY = inThisOne.y + inThisOne.ySize/2;
-
-        let result = false
-
-        if(thisOne.x >= leftX  &&  thisOne.x <= rightX)
-        {
-            if(thisOne.y >= upperY  &&  thisOne.y <= lowerY)
-            {
-                result = true;
-            }
-        }
-
-        return result;
-    }
-
-    getReferenceValue(reference) {
-        reference = reference.replaceAll('%', '');
-
-        let objectName = reference.substring(0, reference.indexOf('.'));
-        let fieldName = reference.substring(reference.indexOf('.') + 1);
-
-        let result = '';
-        Element.elementsArray.forEach(o => {
-                if(o.name.localeCompare(objectName) === 0) {
-                    result = o[fieldName];
-                }
-            }
-        );
-
-        return result;
     }
 }
 
@@ -128,7 +64,6 @@ class Element extends Component {
   componentWillMount() {
     if(!this.props) return false;
     for(const key in this.props.data) {
-      console.log(this.props.data);
       this[key] = this.props.data[key];
     }
 
@@ -145,6 +80,51 @@ class Element extends Component {
       <img src={this.props.data.imageUrl} style={this.imgStyle}/>
     )
   }
+
+    static isElementInAnotherElement(thisOne, inThisOne)
+    {
+        console.log("Element.isElementInAnotherElement start, elements: ");
+        console.log(thisOne);
+        console.log(inThisOne);
+
+        let leftX = inThisOne.x - inThisOne.xSize/2;
+        let rightX = inThisOne.x + inThisOne.xSize/2;
+
+        let upperY = inThisOne.y - inThisOne.ySize/2;
+        let lowerY = inThisOne.y + inThisOne.ySize/2;
+
+        let result = false
+
+        if(thisOne.x >= leftX  &&  thisOne.x <= rightX)
+        {
+            if(thisOne.y >= upperY  &&  thisOne.y <= lowerY)
+            {
+                result = true;
+            }
+        }
+        console.log("isElementInAnotherElement returns " + result);
+
+        return result;
+    }
+
+    static getElement(reference, elementsArray) {
+        while(reference.indexOf('%') !== -1)
+        {
+            reference = reference.replace('%', '');
+        }
+        let objectName = reference;
+
+        console.log("objectName = " + objectName);
+
+        elementsArray.forEach(o => {
+                if(o.name.localeCompare(objectName) === 0) {
+                    console.log("Element.getElement returns:");
+                    console.log(o);
+                    return o;
+                }
+            }
+        );
+    }
 }
 
 const Value = (props) => {
@@ -180,7 +160,7 @@ class Kinematics extends Component {
         console.log("printing resultsArray");
         let resultsArray = [];
         data.Results.forEach( (e) => {
-            resultsArray.push(new Result(e));
+            resultsArray.push(new Result(e, this.state.elementsArray));
         });
         this.setState({resultsArray : resultsArray});
         this.forceUpdate();
