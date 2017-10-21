@@ -128,9 +128,9 @@ class Element extends Component {
 }
 
 const Value = (props) => (
-  <div class="element">
-    <div class="label">{props.name}</div>
-    { props.known ? <div class="known">&#10004</div> : <div class="unknown">?</div> }
+  <div className="element">
+    <div className="label">{ props.data.name}</div>
+    { props.data.known ? <div className="known">&#x2713;</div> : <div className="unknown">?</div> }
   </div>
 );
 
