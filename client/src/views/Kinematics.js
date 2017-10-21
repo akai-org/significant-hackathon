@@ -163,7 +163,7 @@ class Kinematics extends Component {
         console.log("printing resultsArray");
         let resultsArray = [];
         data.Results.forEach( (e) => {
-            resultsArray.push(new Result(e, this.state.elementsArray));
+            //resultsArray.push(new Result(e, this.state.elementsArray));
         });
         this.setState({resultsArray : resultsArray});
         this.forceUpdate();
@@ -173,7 +173,7 @@ class Kinematics extends Component {
   }
 
   componentDidUpdate() {
-    dragula([document.querySelector('.drop-area'), document.querySelector('.elements')]);
+    dragula([...[].slice.call(document.querySelectorAll('.drop-area')), document.querySelector('.elements')]);
   }
 
   render() {
@@ -192,6 +192,9 @@ class Kinematics extends Component {
     const results = [];
     for (let i=0; i < this.state.values.length; i++) {
       results.push(<DropArea key={i} data={this.state.results[i]} />);
+      if( (this.state.values.length>1) && (i!==this.state.values.length-1) ){
+        results.push(<div key={this.state.values+i}>and</div>);
+      }
     }
 
     return (
