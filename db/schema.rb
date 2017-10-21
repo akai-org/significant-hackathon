@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021183228) do
+ActiveRecord::Schema.define(version: 20171021185352) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -54,12 +54,16 @@ ActiveRecord::Schema.define(version: 20171021183228) do
     t.string "yVelocity"
     t.string "x"
     t.string "y"
+    t.integer "task_id"
+    t.index ["task_id"], name: "index_elements_on_task_id"
   end
 
   create_table "results", force: :cascade do |t|
     t.string "leftSide"
     t.string "relation"
     t.string "rightSide"
+    t.integer "task_id"
+    t.index ["task_id"], name: "index_results_on_task_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -76,6 +80,8 @@ ActiveRecord::Schema.define(version: 20171021183228) do
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "task_id"
+    t.index ["task_id"], name: "index_values_on_task_id"
   end
 
 end
