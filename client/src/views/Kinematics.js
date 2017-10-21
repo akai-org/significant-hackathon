@@ -127,12 +127,12 @@ class Element extends Component {
     }
 }
 
-const Value = (props) => {
+const Value = (props) => (
   <div class="element">
     <div class="label">{props.name}</div>
     { props.known ? <div class="known">&#10004</div> : <div class="unknown">?</div> }
   </div>
-};
+);
 
 class Kinematics extends Component {
   constructor(){
@@ -144,7 +144,7 @@ class Kinematics extends Component {
   }
 
   componentWillMount() {
-    fetch('https://akai-math.herokuapp.com/api/task')
+    fetch('https://akai-math.herokuapp.com/api/tasks')
       .then(res => res.json())
       .then(data => {
         let elementsArray = [];
@@ -174,12 +174,12 @@ class Kinematics extends Component {
 
     const elements = [];
     for (let i=0; i < this.state.elementsArray.length; i++) {
-      elements.push(<Element data={this.state.elementsArray[i]} />);
+      elements.push(<Element key={i} data={this.state.elementsArray[i]} />);
     }
 
     const values = [];
     for (let i=0; i < this.state.values.length; i++) {
-      //values.push(<Value data={this.state.values[i]} />);
+      values.push(<Value key={i} data={this.state.values[i]} />);
     }
 
     return (
