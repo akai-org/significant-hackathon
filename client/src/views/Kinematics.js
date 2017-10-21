@@ -12,33 +12,40 @@ class Result {
     }
 
     isTrue(){
-        if(this.relation.localeCompare("=") === 0)
+        if(this.relation.localeCompare('=') === 0)
         {
+            console.log('= relation');
             return this.calculate(this.leftSide) === this.calculate(this.rightSide);
         }
-        else if(this.relation.localeCompare(">="))
+        else if(this.relation.localeCompare('>=') === 0)
         {
+            console.log('>= relation');
             return this.calculate(this.leftSide) >= this.calculate(this.rightSide);
         }
-        else if(this.relation.localeCompare(">"))
+        else if(this.relation.localeCompare('>') === 0)
         {
+            console.log('> relation');
             return this.calculate(this.leftSide) > this.calculate(this.rightSide);
         }
-        else if(this.relation.localeCompare("<="))
+        else if(this.relation.localeCompare('<=') === 0)
         {
+            console.log('<= relation');
             return this.calculate(this.leftSide) <= this.calculate(this.rightSide);
         }
-        else if(this.relation.localeCompare("<"))
+        else if(this.relation.localeCompare('<') === 0)
         {
+            console.log('< relation');
             return this.calculate(this.leftSide) < this.calculate(this.rightSide);
         }
-        else if(this.relation.localeCompare("isIn"))
+        else if(this.relation.localeCompare('isIn') === 0)
         {
-            // this.calculate(this.leftSide)  this.calculate(this.rightSide);
+            console.log('isIn relation');
+            // return this.isElementInAnotherElement()
         }
         else
         {
-            console.log("Relation unknown " + this.relation);
+            console.log('Relation unknown ' + this.relation);
+            return false;
         }
     }
 
@@ -49,25 +56,56 @@ class Result {
             helper = this.replaceReferenceWithValue(helper);
         }
 
+        console.log("about to eval " + helper);
+
         let result = math.eval(helper);
         return result;
     }
 
     replaceReferenceWithValue(helper)
     {
+        console.log("helper is " + helper);
         let firstPercent = helper.indexOf('%');
         let secondPercent = helper.indexOf('%', firstPercent + 1);
+
+        console.log("first and second" + firstPercent + ", " + secondPercent);
 
         let oldSubString = helper.substring(firstPercent, secondPercent - firstPercent + 1);
         let newSubString = this.getReferenceValue(oldSubString);
 
+        console.log("old and new" + oldSubString + ", " + newSubString);
+
         let result = helper.replace(oldSubString, newSubString);
+
+        console.log("result : " + result);
+        return result;
+    }
+
+    isElementInAnotherElement(thisOne, inThisOne)
+    {
+        let leftX = inThisOne.x - inThisOne.xSize/2;
+        let rightX = inThisOne.x + inThisOne.xSize/2;
+
+        let upperY = inThisOne.y - inThisOne.ySize/2;
+        let lowerY = inThisOne.y + inThisOne.ySize/2;
+
+        let result = false
+
+        if(thisOne.x >= leftX  &&  thisOne.x <= rightX)
+        {
+            if(thisOne.y >= upperY  &&  thisOne.y <= lowerY)
+            {
+                result = true;
+            }
+        }
+
         return result;
     }
 
     getReferenceValue(reference) {
         reference = reference.replaceAll('%', '');
-        let objectName = reference.substring(0, reference.indexOf('.'))
+
+        let objectName = reference.substring(0, reference.indexOf('.'));
         let fieldName = reference.substring(reference.indexOf('.') + 1);
 
         let result = '';
@@ -113,7 +151,6 @@ class Element extends Component {
 class Kinematics extends Component {
   constructor(){
     super();
-
     this.state = {
       elementsArray: []
     };
@@ -123,10 +160,14 @@ class Kinematics extends Component {
     fetch('https://akai-math.herokuapp.com/api/task')
       .then(res => res.json())
       .then(data => {
+        console.log("json:");
+        console.log(data);
+
         let elementsArray = [];
         data.Elements.forEach( (e) => {
           elementsArray.push(new Element(e));
         });
+
         this.setState({elementsArray : elementsArray});
         this.forceUpdate();
 
@@ -135,6 +176,7 @@ class Kinematics extends Component {
         data.Results.forEach( (e) => {
             resultsArray.push(new Result(e));
         });
+
         this.setState({resultsArray : resultsArray});
         this.forceUpdate();
         });
