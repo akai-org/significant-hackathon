@@ -10,7 +10,6 @@ module Api
     def index
 
       var = '{
-<<<<<<< HEAD
     "Name":{
         "taskname":"Plane Potato",
         "author":"Adrian"
