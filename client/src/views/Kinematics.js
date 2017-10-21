@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import './Kinematics.css';
 
+class Result {
+    constructor(result){
+        this.leftSide=result.leftSide;
+        this.relation=result.relation;
+        this.rightSide=result.rightSide;
+    }
 
+    isTrue(){
+    }
+
+}
 
 class Element extends Component {
   constructor(element){
@@ -23,9 +33,6 @@ class Element extends Component {
         height:this.ySize
       };
   }
-
-
-
   render() {
     return (
         <div>
@@ -35,8 +42,6 @@ class Element extends Component {
     )
   }
 }
-
-
 
 class Kinematics extends Component {
   constructor(){
