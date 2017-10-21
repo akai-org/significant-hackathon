@@ -3,6 +3,7 @@ module Api
 
     def show
       @task = Task.find(params[:id])
+      render 'api/show'
     end
 
     def index

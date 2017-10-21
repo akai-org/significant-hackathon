@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  namespace :api do
-    namespace :tasks do
+  namespace :api, defaults: { format: 'json' } do
+    scope :tasks do
       get '', to: 'tasks#index'
       get '/:id', to: 'tasks#show'
     end
