@@ -1,3 +1,67 @@
-.Kinematics {
+.cartesian {
+  min-height:70vh;
+  width: 100%;
+  @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+  font-family: 'Gloria Hallelujah', cursive;
+}
 
+.y-axis {
+  height: 90vh;
+  width: 3px;
+  background-color: black;
+  position: absolute;
+  bottom: 20px;
+  left: 60px;
+}
+
+.y-axis:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-bottom: 16px solid #000000;
+  border-right: 16px solid transparent;
+  position: absolute;
+  top: -2px;
+  left: -14px;
+}
+.y-axis-description {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+}
+
+.x-axis {
+  width: 90vw;
+  height: 3px;
+  background-color: black;
+  position: absolute;
+  left:30px;
+  bottom: 50px
+}
+.x-axis:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 16px solid #000000;
+  border-bottom: 16px solid transparent;
+  border-top: 16px solid transparent;
+  position: absolute;
+  top: -12px;
+  right: -14px;
+}
+.x-axis-description {
+  position: absolute;
+  bottom: 35px;
+  right: 30px;
+}
+
+.board{
+  height: 85vh;
+  width: 90vw;
+  position: absolute;
+  left: 63px;
+  bottom: 50px;
 }
