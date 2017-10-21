@@ -65,28 +65,40 @@
 }
 
 .board{
-  height: 85vh;
-  width: 90vw;
+  height: calc(100% - 63px);
+  width: calc(100% - 63px);
   position: relative;
   left: 63px;
-  bottom: 50px;
+  top: 10px;
 }
 
 .elements{
-  background-color: red;
+  //background-color: red;
   height: calc(100% - 150px);
   width: 250px;
   position: relative;
   top: 0;
   float: right;
+  padding: 5px 20px;
+  box-sizing: border-box;
 
 }
 
 .result {
-  background-color: green;
+  //background-color: green;
   height: 150px;
   width: 100%;
   position: absolute;
   bottom: 0;
+  padding: 0 20px 5px;
+  box-sizing: border-box;
+}
+.drop-area{
+  //background-color: blue;
+  height: 100%;
+  width: 100%;
+}
 
+h3 {
+  margin-top: 0;
 }

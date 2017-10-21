@@ -143,9 +143,13 @@ class Kinematics extends Component {
           <div className="x-axis-description">x axis</div>
         </div>
         <div className="elements">
+          <h3>Elements</h3>
 
         </div>
         <div className="result">
+          <h3>Result</h3>
+          <div className="drop-area">
+          </div>
 
         </div>
       </div>
