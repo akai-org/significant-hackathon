@@ -67,7 +67,7 @@
 .board{
   height: 85vh;
   width: 90vw;
-  position: absolute;
+  position: relative;
   left: 63px;
   bottom: 50px;
 }
