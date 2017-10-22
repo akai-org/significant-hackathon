@@ -79,7 +79,7 @@ class Kinematics extends Component {
     }
 
     const results = [];
-    for (let i=0; i < this.state.values.length; i++) {
+    for (let i=0; i < this.state.results.length; i++) {
       results.push(<DropArea key={i} data={this.state.results[i]} />);
       if( (this.state.values.length>1) && (i!==this.state.values.length-1) ){
         results.push(<div key={this.state.values+i}>and</div>);
@@ -110,8 +110,23 @@ class Kinematics extends Component {
     );
   }
 
-  start(){
+  start() {
+    let dropareas = document.getElementsByClassName('drop-area');
+    let r = [];
+    for(let i = 0; i < dropareas.length; i++) {
+      r.push('');
+    }
 
+    [...[].slice.call(
+      dropareas
+    )].forEach((e, i) => {
+      [...[].slice.call(
+        e.getElementsByClassName('element')
+      )].forEach(ee => {
+        r[i] += ee.querySelector('.label').innerHTML
+      })
+    })
+    console.log(r);
   }
 
 }
