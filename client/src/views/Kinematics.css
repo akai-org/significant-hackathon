@@ -173,3 +173,6 @@ button:active{
   box-shadow: 0 7px 0 rgba(0,0,0, .3);
   top:8px;
 }
+img {
+  transition: top 1s linear, left 1s linear;
+}
