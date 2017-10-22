@@ -16,7 +16,7 @@ json.Elements @task.elements.sort { |a, b| a.layer <=> b.layer } do |element|
   json.yVelocity element.yVelocity
   json.x element.x
   json.y element.y
-  json.imageUrl element.image.url(:original)
+  json.imageUrl 'https://s3.eu-central-1.amazonaws.com/looks-tasty' + element.image.path
 end
 
 standard_elements = [Value.new(name: "+"), Value.new(name: "*"),
