@@ -21,7 +21,8 @@ standard_elements = [Value.new(name: "+"), Value.new(name: "*"),
             Value.new(name: "-"), Value.new(name: "/"),
             Value.new(name: "^"), Value.new(name: "sqrt"),
             Value.new(name: "="), Value.new(name: "t", known: "false"),
-            Value.new(name: "g", known: "true", value: "10")]
+            Value.new(name: "g", known: "true", value: "10"),
+            Value.new(name: "2", value: "2"), Value.new(name: "0.5", value: "0.5")]
 
 json.Values @task.values.to_ary.concat(standard_elements)
 
