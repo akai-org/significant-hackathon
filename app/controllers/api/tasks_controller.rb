@@ -11,17 +11,17 @@ module Api
 
       var = '{
     "Name":{
-        "taskname":"Plane Potato",
+        "taskname":"Plane Tomato",
         "author":"Adrian"
     },
     "Elements":[
         {
             "name":"Puf",
             "imageUrl":"/images/Puf.png",
-            "xSize":"5%",
-            "ySize":"5%",
-            "xStart":"40%",
-            "yStart":"5%",
+            "xSize":"5",
+            "ySize":"5",
+            "xStart":"40",
+            "yStart":"5",
             "isConstant":"false",
             "xVelocity":"100",
             "yVelocity":"0",
@@ -31,10 +31,10 @@ module Api
         {
             "name":"Plane",
             "imageUrl":"/images/Plane.png",
-            "xSize":"20%",
-            "ySize":"20%",
-            "xStart":"50%",
-            "yStart":"5%",
+            "xSize":"20",
+            "ySize":"20",
+            "xStart":"50",
+            "yStart":"5",
             "isConstant":"false",
             "xVelocity":"100",
             "yVelocity":"0",
@@ -44,10 +44,10 @@ module Api
         {
             "name":"Tomato",
             "imageUrl":"/images/Tomato.png",
-            "xSize":"4%",
-            "ySize":"2%",
-            "xStart":"53%",
-            "yStart":"5%",
+            "xSize":"4",
+            "ySize":"2",
+            "xStart":"53",
+            "yStart":"5",
             "isConstant":"false",
             "xVelocity":"%Plane.xVelocity%",
             "yVelocity":"%Plane.yVelocity%",
@@ -57,10 +57,10 @@ module Api
         {
             "name":"Pot",
             "imageUrl":"/images/Pot.png",
-            "xSize":"10%",
-            "ySize":"2%",
-            "xStart":"70%",
-            "yStart":"95%",
+            "xSize":"10",
+            "ySize":"2",
+            "xStart":"70",
+            "yStart":"95",
             "isConstant":"true",
             "xVelocity":"",
             "yVelocity":"",
@@ -97,6 +97,60 @@ module Api
             "name":"X",
             "known":"true",
             "for":"%Pot.x%-%Plane.x%",
+            "value":""
+        },
+        {
+            "name":"t",
+            "known":"false",
+            "for":"",
+            "value":""
+        },
+        {
+            "name":"g",
+            "known":"true",
+            "for":"",
+            "value":"10"
+        },
+        {
+            "name":"+",
+            "known":"",
+            "for":"",
+            "value":""
+        },
+        {
+            "name":"-",
+            "known":"",
+            "for":"",
+            "value":""
+        },
+        {
+            "name":"*",
+            "known":"",
+            "for":"",
+            "value":""
+        },
+        {
+            "name":"/",
+            "known":"",
+            "for":"",
+            "value":""
+        },
+        {
+            "name":"^",
+            "known":"",
+            "for":"",
+            "value":""
+        },
+        {
+            "name":"sqrt",
+            "known":"",
+            "for":"",
+            "value":""
+        },
+        {
+            "name":"=",
+            "known":"",
+            "for":"",
             "value":""
         }
     ]
