@@ -105,6 +105,7 @@ class Kinematics extends Component {
                     {values}
                 </div>
                 <button onClick={this.start.bind(this)}>START</button>
+              <button className="reload" onClick={this.reload.bind(this)}>RELOAD</button>
                 <div className="result">
                     <h3>Result</h3>
                     {results}
@@ -112,6 +113,10 @@ class Kinematics extends Component {
             </div>
         );
     }
+
+    reload() {
+    window.location.reload();
+  }
 
   start() {
     let dropareas = document.getElementsByClassName('drop-area');
