@@ -10,8 +10,9 @@ const dragula = require('dragula');
 const Value = (props) => (
   <div className="element">
     <div className="label">{ props.data.name}</div>
-    { props.data.known ? <div className="known">&#x2713;</div> : <div className="unknown">?</div> }
-  </div>
+    { (props.data.known && props.data.known !== "false") && <div className="known">&#x2713;</div> }
+    { (props.data.known && props.data.known === "false") && <div className="unknown">?</div> }
+</div>
 );
 
 const DropArea = (props) => (
@@ -135,6 +136,7 @@ class Kinematics extends Component {
           r[i] += ee.querySelector('.label').innerHTML
       })
     })
+    console.log(r);
 
     this.state.elementsArray.forEach( (e) => {
         Object.keys(e).forEach( (key) => {
@@ -236,6 +238,3 @@ class Kinematics extends Component {
 }
 
 export default Kinematics;
-
-
-11
