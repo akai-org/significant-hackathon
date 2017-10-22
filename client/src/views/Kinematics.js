@@ -175,7 +175,7 @@ class Kinematics extends Component {
         }
     }
 
-    let timeValue, gValue;
+    let timeValue, gValue, Hp = 0;
     let valuesResolved = true;
 
     for(let i=0 ; i<this.state.values.length ; i++) {
@@ -184,6 +184,8 @@ class Kinematics extends Component {
         }
         else if(this.state.values[i].known != null && this.state.values[i].name.localeCompare('g') == 0) {
             gValue = this.state.values[i].value;
+        } else if(this.state.values[i].known != null && this.state.values[i].name.localeCompare('Hp') == 0) {
+            Hp = this.state.values[i].value;
         }
 
         if (this.state.values[i].known != null && this.state.values[i].known.localeCompare('false') == 0) {
@@ -196,21 +198,32 @@ class Kinematics extends Component {
     }
 
 
-    let tomato;
+    let tomato, puf, plane;
     let i=0;
     for(i=0 ; i<this.state.elementsArray.length ; i++) {
       if(this.state.elementsArray[i].name.localeCompare('Tomato') == 0) {
       tomato = this.state.elementsArray[i];
+        console.log(100 - Hp);
 
       tomato.xEnd = math.eval(tomato.xStart + "+" + tomato.xVelocity + '*' + timeValue);
+      tomato.yStart = 100 - Hp;
       tomato.yEnd = math.eval(tomato.yStart + "+" + '0.5' + '*' + gValue + '*' + timeValue + '^2');
-      break;
+      continue;
+    } else if(this.state.elementsArray[i].name.localeCompare('Plane') == 0) {
+      plane = this.state.elementsArray[i];
+      plane.yStart = 100 - Hp;
+      plane.yEnd = 100 - Hp;
+    } else if(this.state.elementsArray[i].name.localeCompare('Puf') == 0) {
+      puf = this.state.elementsArray[i];
+      puf.yStart = 100 - Hp;
+      puf.yEnd = 100 - Hp;
+      // TODO: We have to move puf, tomato, plane before simulation starts
     }
   }
 
       this.setState( {anim: true} );
-    this.state.elementsArray[i].yEnd = tomato.yEnd;
-    this.state.elementsArray[i].xEnd = tomato.xEnd;
+    // this.state.elementsArray[i].yEnd = tomato.yEnd;
+    // this.state.elementsArray[i].xEnd = tomato.xEnd;
     return tomato.xEnd + ',' + tomato.yEnd;
   }
 

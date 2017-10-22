@@ -19,7 +19,6 @@ let starter = false;
 
 class App extends Component {
   start() {
-    console.log('aasa');
     starter = true;
     this.forceUpdate();
   }

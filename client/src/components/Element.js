@@ -40,7 +40,6 @@ class Element extends Component {
       }
     }
 
-    console.log(this.props);
     this.imgStyle = {
       width: `${this.xSize}%`,
       position: 'absolute',
