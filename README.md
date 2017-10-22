@@ -35,8 +35,9 @@ Name |  Version |
 ## Do following things if it is your initial setup
 
   * `cd ~/Developer/`
-  * `git clone git@github.com:akai-org/significant-hackathon.git
+  * `git clone https://github.com/akai-org/significant-hackathon.git`
   * `cd significant-hackathon`
+  * `cd client`
   * `yarn` or `npm install`
   * `npm start`
 
