@@ -192,7 +192,7 @@ class Kinematics extends Component {
     }
 
     if(valuesResolved == false){
-        return 'Not all variables have been resolved';
+        console.log('Not all variables have been resolved');
     }
 
 
@@ -208,8 +208,8 @@ class Kinematics extends Component {
     }
   }
 
-      this.setState( {anim: true} );
-      console.log(tomato);
+    this.setState( {anim: true} );
+    console.log(tomato);
     return tomato.xEnd + ',' + tomato.yEnd;
   }
 }
