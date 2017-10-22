@@ -289,6 +289,7 @@ class Kinematics extends Component {
 
       tomato.xEnd = math.eval(tomato.xVelocity + '*' + timeValue);
       tomato.yEnd = math.eval('0.5' + '*' + gValue + timeValue + '^2');
+      console.log(tomato);
       break;
     }
   }

@@ -21,8 +21,9 @@ class Element extends Component {
 
   render() {
     if(!this.props) return false;
+    if(!this.props.data) return false;
     for(const key in this.props.data) {
-      if( this.props.data[key].indexOf('%')!= -1) {
+      if( this.props.data[key].indexOf && this.props.data[key].indexOf('%')!= -1) {
         console.log('tutaj', key, this.props.data[key]);
         this[key] = Equation.replaceReferenceWithValue(this.props.data[key], this.props.elements);
       } else {
