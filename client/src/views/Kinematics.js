@@ -62,61 +62,11 @@ class Kinematics extends Component {
     }
 
     componentDidUpdate() {
-        dragula([...[].slice.call(document.querySelectorAll('.drop-area')), document.querySelector('.elements')]);
+        dragula([...[].slice.call(document.querySelectorAll('.drop-area')), document.querySelector('.elements')],{
+          copy: true
+        });
     }
 
-<<<<<<< HEAD
-    const results = [];
-    for (let i=0; i < this.state.results.length; i++) {
-      results.push(<DropArea key={i} data={this.state.results[i]} />);
-      if( (this.state.values.length>1) && (i!==this.state.values.length-1) ){
-        results.push(<div key={this.state.values+i}>and</div>);
-      }
-    }
-
-    return (
-      <div className="lesson">
-        <div className="cartesian">
-          <div className="y-axis-description">y axis</div>
-          <div className="y-axis"></div>
-          <div className="board">
-            {elements}
-          </div>
-          <div className="x-axis"></div>
-          <div className="x-axis-description">x axis</div>
-        </div>
-        <div className="elements">
-          <h3>Elements</h3>
-          {values}
-        </div>
-        <button onClick={this.start}>START</button>
-        <div className="result">
-          <h3>Result</h3>
-          {results}
-        </div>
-      </div>
-    );
-  }
-
-  start() {
-    let dropareas = document.getElementsByClassName('drop-area');
-    let r = [];
-    for(let i = 0; i < dropareas.length; i++) {
-      r.push('');
-    }
-
-    [...[].slice.call(
-      dropareas
-    )].forEach((e, i) => {
-      [...[].slice.call(
-        e.getElementsByClassName('element')
-      )].forEach(ee => {
-        r[i] += ee.querySelector('.label').innerHTML
-      })
-    })
-    console.log(r);
-  }
-=======
     render() {
         if (!this.state.elementsArray[0]) return '';
 
@@ -131,7 +81,7 @@ class Kinematics extends Component {
         }
 
         const results = [];
-        for (let i = 0; i < this.state.values.length; i++) {
+        for (let i = 0; i < this.state.results.length; i++) {
             results.push(<DropArea key={i} data={this.state.results[i]}/>);
             if ((this.state.values.length > 1) && (i !== this.state.values.length - 1)) {
                 results.push(<div key={this.state.values + i}>and</div>);
@@ -162,10 +112,24 @@ class Kinematics extends Component {
         );
     }
 
-    start() {
->>>>>>> 480650655a29bb20cee76afe2cce72dfe3c45182
-
+  start() {
+    let dropareas = document.getElementsByClassName('drop-area');
+    let r = [];
+    for (let i = 0; i < dropareas.length; i++) {
+      r.push('');
     }
+
+    [...[].slice.call(
+      dropareas
+    )].forEach((e, i) => {
+      [...[].slice.call(
+        e.getElementsByClassName('element')
+      )].forEach(ee => {
+        r[i] += ee.querySelector('.label').innerHTML
+      })
+    })
+    console.log(r);
+  }
 }
 
 export default Kinematics;
