@@ -84,13 +84,14 @@
 }
 
 .result {
-  height: 150px;
+  min-height: 150px;
   width: 100%;
   position: absolute;
   bottom: 0;
   padding: 0 20px 5px;
   box-sizing: border-box;
   display:flex;
+  z-index: 10000;
 }
 .result > h3 {
   position: absolute;
@@ -101,7 +102,7 @@
   margin: 5px;
 }
 .drop-area{
-  height: 100px;
+  min-height: 100px;
   width: calc(50% - 10px);
   outline: 5px dashed #9C0E1E;
   padding: 5px;
