@@ -9,6 +9,8 @@ json.Elements @task.elements.sort { |a, b| a.layer <=> b.layer } do |element|
   json.ySize element.ySize
   json.xStart element.xStart
   json.yStart element.yStart
+  json.xEnd element.xEnd
+  json.yEnd element.yEnd
   json.isConstant element.isConstant
   json.xVelocity element.xVelocity
   json.yVelocity element.yVelocity
