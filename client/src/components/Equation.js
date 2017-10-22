@@ -12,7 +12,7 @@ class Equation {
     }
 
     static calculate(equation, elementsArray){
-        console.log("Equation.calculate: start");
+        console.log("Equation.calculate: start", equation);
         let helper = equation;
         while(helper.indexOf('%') !== -1)
         {
@@ -22,17 +22,23 @@ class Equation {
         console.log("Equation.calculate: about to eval: " + helper);
         let result = math.eval(helper);
 
-        console.log("Equation.calculate: after eval: " + helper);
+        console.log("Equation.calculate: after eval: " + result);
         return result;
     }
 
     static replaceReferenceWithValue(helper, elementsArray)
     {
+        console.log('Equation.replaceReferenceWithValue : ', helper, elementsArray);
+
+
         let firstPercent = helper.indexOf('%');
         let secondPercent = helper.indexOf('%', firstPercent + 1);
 
         let oldSubString = helper.substring(firstPercent, secondPercent - firstPercent + 1);
         let newSubString = Equation.getReferenceValue(oldSubString, elementsArray);
+
+        console.log('oldSubString : ', oldSubString);
+        console.log('newSubString : ', newSubString);
 
         let result = helper.replace(oldSubString, newSubString);
 
