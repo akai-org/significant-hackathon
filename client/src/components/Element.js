@@ -13,6 +13,16 @@ class Element extends Component {
       top: `${this.yEnd}%`,
       left: `${this.xEnd}%`,
     };
+
+  }
+
+  finishAnimation(st) {
+    this.imgStyle = {
+      width: `${this.xSize}%`,
+      position: 'absolute',
+      top: `${this.yEnd}%`,
+      left: `${this.xEnd}%`,
+    };
   }
 
   componentWillMount() {
