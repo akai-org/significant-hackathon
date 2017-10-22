@@ -30,7 +30,7 @@ class Kinematics extends Component {
     }
 
     componentWillMount() {
-        fetch('https://akai-math.herokuapp.com/api/tasks/1')
+        fetch(`https://akai-math.herokuapp.com/api/tasks/${this.props.task}`)
             .then(res => res.json())
             .then(data => {
                 let elementsArray = [];
@@ -127,6 +127,7 @@ class Kinematics extends Component {
     for (let i = 0; i < dropareas.length; i++) {
         r.push('');
     }
+    this.setState( {anim: true} );
 
   [...[].slice.call(
       dropareas
