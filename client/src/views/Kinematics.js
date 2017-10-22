@@ -81,7 +81,7 @@ class Kinematics extends Component {
 
         const elements = [];
         for (let i = 0; i < this.state.elementsArray.length; i++) {
-            elements.push(<Element key={i} data={this.state.elementsArray[i]}/>);
+            elements.push(<Element elements={this.state.elementsArray} key={i} data={this.state.elementsArray[i]}/>);
         }
 
         const values = [];
@@ -138,6 +138,8 @@ class Kinematics extends Component {
       })
     })
     console.log(r);
+
+
   }
 }
 

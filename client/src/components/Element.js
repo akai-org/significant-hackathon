@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Equation from './Equation';
 
 class Element extends Component {
   constructor(){
@@ -8,7 +9,11 @@ class Element extends Component {
   componentWillMount() {
     if(!this.props) return false;
     for(const key in this.props.data) {
-      this[key] = this.props.data[key];
+      if( this.props.data[key].indexOf('%')!= -1) {
+        this[key] = Equation.replaceReferenceWithValue(key, this.props.elements);
+      } else {
+        this[key] = this.props.data[key];
+      }
     }
 
     console.log(this.props);
@@ -25,6 +30,8 @@ class Element extends Component {
       <img src={this.props.data.imageUrl} style={this.imgStyle}/>
     )
   }
+
+
 
   static isElementInAnotherElement(thisOne, inThisOne)
   {
@@ -66,6 +73,8 @@ class Element extends Component {
           result = i;
       }
     );
+
+
 
     return result;
   }
