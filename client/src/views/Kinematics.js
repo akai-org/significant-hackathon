@@ -125,19 +125,107 @@ class Kinematics extends Component {
     let dropareas = document.getElementsByClassName('drop-area');
     let r = [];
     for (let i = 0; i < dropareas.length; i++) {
-      r.push('');
+        r.push('');
     }
 
-    [...[].slice.call(
+  [...[].slice.call(
       dropareas
-    )].forEach((e, i) => {
+  )].forEach((e, i) => {
       [...[].slice.call(
-        e.getElementsByClassName('element')
+          e.getElementsByClassName('element')
       )].forEach(ee => {
-        r[i] += ee.querySelector('.label').innerHTML
+          r[i] += ee.querySelector('.label').innerHTML
       })
-    })
-    console.log(r);
+  })
+  console.log(r);
+
+
+    let equations = r;
+    let result = '';
+
+    //somehow get strings equations
+
+
+    //change symbols to known values
+    for(let i=0 ; i<equations.size() ; i++)
+    {
+        this.state.values.forEach( (v) => {
+            if(v.known.localeCompare('true') === 0  &&  equations[i].indexOf(v.name) != -1){
+                equations[i] = equations[i].replace(v.name, v.value);
+            }
+        });
+    }
+
+    //map to Equations objects
+    let equationsMapped = [];
+
+    equations.forEach( (o) => {
+        try{
+            equationsMapped.push(new Equation(o));
+        } //TODO eval on the right side might crash if user left an unknown var there
+        catch (e)
+        {
+            result = 'There are unknown variables on the right side of the equation';
+            return;
+        }
+
+    });
+
+    if(result.localeCompare('') != 0)
+    {
+        return result;
+    }
+
+    //fill values with calculated value
+    for(let i=0 ; i<this.state.values.size() ; i++)
+    {
+        if(this.state.values[i].known.localeCompare('false') == 0)
+        {
+            equationsMapped.forEach( (e) => {
+               if(e.leftSide.localeCompare(this.state.values[i].name) == 0)
+               {
+                   this.state.values[i].known = 'true';
+                   this.state.values[i].value = e.calculatedRightSide;
+               }
+            });
+        }
+    }
+
+    //check if all values have their value field filled
+    for(let i=0 ; i<this.state.values.size() ; i++) {
+        if (this.state.values[i].known.localeCompare('false') == 0) {
+            result = 'Value ' + this.state.values[i].name + ' has not been calculated';
+            break;
+        }
+    }
+
+    if(result.localeCompare('') != 0)
+    {
+        return result;
+    }
+
+    //calculate tomato coords
+    let timeValue, gValue;
+    for(let i=0 ; i<this.state.values.size() ; i++) {
+        if (this.state.values[i].name.localeCompare('t') == 0) {
+            timeValue = this.state.values[i].value;
+        }
+        else if(this.state.values[i].name.localeCompare('t') == 0) {
+            gValue = this.state.values[i].value;
+        }
+    }
+
+    let tomato;
+    for(let i=0 ; i<this.state.elementsArray.size() ; i++) {
+        if(this.state.elementsArray[i].name.localeCompare('Tomato') == 0) {
+            tomato = this.state.elementsArray[i];
+
+            tomato.xEnd = math.eval(tomato.xVelocity + '*' + timeValue);
+            tomato.yEnd = math.eval('0.5' + '*' + gValue + timeValue + '^2');
+        }
+    }
+
+    return tomato.xEnd + ',' + tomato.yEnd;
   }
 }
 
