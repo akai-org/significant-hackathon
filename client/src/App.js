@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { !starter ? <div onClick={ this.start.bind(this) }><SplashScreen /></div> : <Kinematics/> }
+        { starter ? <Kinematics/> : <div onClick={ this.start.bind(this) }><SplashScreen /></div> }
         <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
       </div>
     );
