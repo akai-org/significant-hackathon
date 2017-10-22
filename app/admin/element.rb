@@ -12,7 +12,7 @@ ActiveAdmin.register Element do
 #   permitted
 # end
   belongs_to :task
-  fields = [:name, :xSize, :ySize, :xStart, :yStart, :isConstant, :xVelocity, :yVelocity, :x, :y, :image]
+  fields = [:name, :xSize, :ySize, :xStart, :yStart, :isConstant, :xVelocity, :yVelocity, :x, :y, :layer, :image]
   permit_params fields
 
   form do |f|
