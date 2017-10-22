@@ -220,7 +220,7 @@ class Kinematics extends Component {
 
   reload() {
     console.log(this.state.const_values);
-    this.setState({anim: false, values: this.state.const_values});
+    this.setState({anim: false, values: JSON.parse(JSON.stringify(this.state.const_values))});
   }
 }
 
