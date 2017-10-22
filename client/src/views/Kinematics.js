@@ -8,7 +8,7 @@ const math = require('mathjs');
 const dragula = require('dragula');
 
 const Value = (props) => (
-  <div draggable className="element">
+  <div className="element">
     <div className="label">{ props.data.name}</div>
     { props.data.known ? <div className="known">&#x2713;</div> : <div className="unknown">?</div> }
   </div>
@@ -62,9 +62,18 @@ class Kinematics extends Component {
     }
 
     componentDidUpdate() {
-        dragula([...[].slice.call(document.querySelectorAll('.drop-area')), document.querySelector('.elements')],{
-          copy: true
+      if(!this.dragula) {
+        dragula([...[].slice.call(document.querySelectorAll('.drop-area')), document.querySelector('.elements')], {
+          copy: function (el, source) {
+            return source === document.querySelector('.elements')//document.getElementById(left)
+          },
+          accepts: function (el, target) {
+            return target !== document.querySelector('.elements')//document.getElementById(left)
+          },
+          removeOnSpill: true
         });
+        this.dragula = 1;
+      }
     }
 
     render() {
@@ -83,7 +92,7 @@ class Kinematics extends Component {
         const results = [];
         for (let i = 0; i < this.state.results.length; i++) {
             results.push(<DropArea key={i} data={this.state.results[i]}/>);
-            if ((this.state.values.length > 1) && (i !== this.state.values.length - 1)) {
+            if ((this.state.values.length > 1) && (i !== this.state.results.length - 1)) {
                 results.push(<div key={this.state.values + i}>and</div>);
             }
         }
