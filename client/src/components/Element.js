@@ -6,7 +6,20 @@ class Element extends Component {
     super();
   }
 
+  startAnimation(st) {
+    this.imgStyle = {
+      width: `${this.xSize}%`,
+      position: 'absolute',
+      top: `${this.yEnd}%`,
+      left: `${this.xEnd}%`,
+    };
+  }
+
   componentWillMount() {
+
+  }
+
+  render() {
     if(!this.props) return false;
     for(const key in this.props.data) {
       if( this.props.data[key].indexOf('%')!= -1) {
@@ -20,12 +33,10 @@ class Element extends Component {
     this.imgStyle = {
       width: `${this.xSize}%`,
       position: 'absolute',
-      top: `${this.yStart}%`,
-      left: `${this.xStart}%`,
+      top: `${!this.props.anim ? this.yStart : this.yEnd}%`,
+      left: `${!this.props.anim ? this.xStart : this.xEnd}%`,
     };
-  }
 
-  render() {
     return (
       <img src={this.props.data.imageUrl} style={this.imgStyle}/>
     )

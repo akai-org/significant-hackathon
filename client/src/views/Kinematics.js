@@ -81,7 +81,7 @@ class Kinematics extends Component {
 
         const elements = [];
         for (let i = 0; i < this.state.elementsArray.length; i++) {
-            elements.push(<Element elements={this.state.elementsArray} key={i} data={this.state.elementsArray[i]}/>);
+            elements.push(<Element anim={this.state.anim} elements={this.state.elementsArray} key={i} data={this.state.elementsArray[i]}/>);
         }
 
         const values = [];
@@ -112,7 +112,7 @@ class Kinematics extends Component {
                     <h3>Elements</h3>
                     {values}
                 </div>
-                <button onClick={this.start}>START</button>
+                <button onClick={this.start.bind(this)}>START</button>
                 <div className="result">
                     <h3>Result</h3>
                     {results}
@@ -139,7 +139,7 @@ class Kinematics extends Component {
     })
     console.log(r);
 
-
+    this.setState( {anim: true} );
   }
 }
 
