@@ -39,7 +39,8 @@ class Kinematics extends Component {
                 this.setState({
                     elementsArray: elementsArray,
                     values: data.Values,
-                    results: data.Results
+                    results: data.Results,
+                    const_values: JSON.parse(JSON.stringify(data.Values))
                 });
                 this.forceUpdate();
 
@@ -216,9 +217,14 @@ class Kinematics extends Component {
     this.state.elementsArray[i].xEnd = tomato.xEnd;
     return tomato.xEnd + ',' + tomato.yEnd;
   }
+
+  reload() {
+    console.log(this.state.const_values);
+    this.setState({anim: false, values: this.state.const_values});
+  }
 }
 
 export default Kinematics;
 
 
-
+11
