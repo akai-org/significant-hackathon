@@ -159,12 +159,18 @@ button {
   background-color: #96d700;
   color: white;
   top:0px;
-  right: -50px;
+  float: left;
+  right: -20px;
+  margin-right: 10px;
   transition: all .3s;
   border: none;
   outline: none;
   font-size: 26px;
   font-family: 'Gloria Hallelujah', cursive;
+}
+.reload {
+  background-color: #00d7ca;
+  margin-right: 0;
 }
 button:hover {
   cursor: pointer;
