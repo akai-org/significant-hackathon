@@ -1,0 +1,183 @@
+.lesson {
+  height: calc(100vh - 32px);
+  position: relative;
+}
+.cartesian {
+  position: relative;
+  height: calc(100% - 150px);
+  width: calc(100% - 250px);
+  left:0;
+  font-family: 'Gloria Hallelujah', cursive;
+  float: left;
+}
+
+.y-axis {
+  height: calc(100% - 40px);
+  width: 3px;
+  background-color: black;
+  position: absolute;
+  bottom: 20px;
+  left: 60px;
+}
+
+.y-axis:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-bottom: 16px solid #000000;
+  border-right: 16px solid transparent;
+  position: absolute;
+  top: -2px;
+  left: -14px;
+}
+.y-axis-description {
+  position: absolute;
+  top: 30px;
+  left: 70px;
+}
+
+.x-axis {
+  width: calc(100% - 50px);
+  height: 3px;
+  background-color: black;
+  position: absolute;
+  left:30px;
+  bottom: 50px
+}
+.x-axis:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 16px solid #000000;
+  border-bottom: 16px solid transparent;
+  border-top: 16px solid transparent;
+  position: absolute;
+  top: -12px;
+  right: -14px;
+}
+.x-axis-description {
+  position: absolute;
+  bottom: 45px;
+  right: 30px;
+}
+
+.board{
+  height: calc(100% - 63px);
+  width: calc(100% - 63px);
+  position: relative;
+  left: 63px;
+  top: 10px;
+}
+
+.elements{
+  height: calc(100% - 260px);
+  width: 250px;
+  position: relative;
+  top: 0;
+  float: right;
+  padding: 5px 20px;
+  box-sizing: border-box;
+
+}
+
+.result {
+  min-height: 150px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 0 20px 5px;
+  box-sizing: border-box;
+  display:flex;
+  z-index: 10000;
+}
+.result > h3 {
+  position: absolute;
+  bottom: 160px;
+  left: 50vw;
+}
+.result >div {
+  margin: 5px;
+}
+.drop-area{
+  min-height: 100px;
+  width: calc(50% - 10px);
+  outline: 5px dashed #9C0E1E;
+  padding: 5px;
+  box-sizing: border-box;
+  float: left;
+}
+
+h3 {
+  margin: 0;
+}
+
+img {
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.unknown{
+  color: orange;
+}
+
+.element{
+  height: 60px;
+  width: 60px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0, .5);
+  float: left;
+  margin: 5px;
+  font-size: 20px;
+
+}
+.element:hover{
+  cursor:pointer;
+}
+
+.known{
+  color: green;
+}
+
+button {
+  width: 100px;
+  height: 80px;
+  border-radius: 30px;
+  box-shadow: 0 15px 0 rgba(0,0,0, .3);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #96d700;
+  color: white;
+  top:0px;
+  float: left;
+  right: -20px;
+  margin-right: 10px;
+  transition: all .3s;
+  border: none;
+  outline: none;
+  font-size: 26px;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+.reload {
+  background-color: #00d7ca;
+  margin-right: 0;
+}
+button:hover {
+  cursor: pointer;
+}
+button:active{
+  box-shadow: 0 7px 0 rgba(0,0,0, .3);
+  top:8px;
+}
+img {
+  transition: top 1s linear, left 1s linear;
+}

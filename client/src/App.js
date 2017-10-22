@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+import 'dragula/dist/dragula.css';
+
+import Naviagtion from './components/Navigation';
+import Kinematics from './views/Kinematics';
+
+const SplashScreen = () => (
+  <img src="/images/Splash.png" alt="" style={ {width: '100vw', height: '100vh', left:'0', top:'0', transform: 'none'} } />
+);
+
+let starter = false;
 
 class App extends Component {
+  start() {
+    starter = true;
+    this.forceUpdate();
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        { !starter ? <div onClick={ this.start.bind(this) }><SplashScreen /></div> : <Kinematics task={1}/> }
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
       </div>
     );
   }
