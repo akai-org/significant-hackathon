@@ -1,30 +1,48 @@
 import React, { Component } from 'react';
+import Equation from './Equation';
 
 class Element extends Component {
   constructor(){
     super();
   }
 
+  startAnimation(st) {
+    this.imgStyle = {
+      width: `${this.xSize}%`,
+      position: 'absolute',
+      top: `${this.yEnd}%`,
+      left: `${this.xEnd}%`,
+    };
+  }
+
   componentWillMount() {
+
+  }
+
+  render() {
     if(!this.props) return false;
     for(const key in this.props.data) {
-      this[key] = this.props.data[key];
+      if( this.props.data[key].indexOf('%')!= -1) {
+        this[key] = Equation.replaceReferenceWithValue(key, this.props.elements);
+      } else {
+        this[key] = this.props.data[key];
+      }
     }
 
     console.log(this.props);
     this.imgStyle = {
       width: `${this.xSize}%`,
       position: 'absolute',
-      top: `${this.yStart}%`,
-      left: `${this.xStart}%`,
+      top: `${!this.props.anim ? this.yStart : this.yEnd}%`,
+      left: `${!this.props.anim ? this.xStart : this.xEnd}%`,
     };
-  }
 
-  render() {
     return (
       <img src={this.props.data.imageUrl} style={this.imgStyle}/>
     )
   }
+
+
 
   static isElementInAnotherElement(thisOne, inThisOne)
   {
@@ -66,6 +84,8 @@ class Element extends Component {
           result = i;
       }
     );
+
+
 
     return result;
   }
