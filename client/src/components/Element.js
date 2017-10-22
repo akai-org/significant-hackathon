@@ -23,7 +23,7 @@ class Element extends Component {
     if(!this.props) return false;
     if(!this.props.data) return false;
     for(const key in this.props.data) {
-      if( this.props.data[key].indexOf('%')!= -1) {
+      if( this.props.data[key].indexOf && this.props.data[key].indexOf('%')!= -1) {
         this[key] = Equation.replaceReferenceWithValue(this.props.data[key], this.props.elements);
       } else {
         this[key] = this.props.data[key];
