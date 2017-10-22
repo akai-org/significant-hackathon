@@ -8,6 +8,7 @@ class Equation {
         let equaltyIndex = equation.indexOf('=');
         this.leftSide = equation.substring(0, equaltyIndex);
         this.rightSide = equation.substring(equaltyIndex + 1);
+        this.calculatedRightSide = Equation.calculate(this.rightSide);
     }
 
     static calculate(equation, elementsArray){
