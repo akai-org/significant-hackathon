@@ -135,7 +135,6 @@ class Kinematics extends Component {
           r[i] += ee.querySelector('.label').innerHTML
       })
     })
-    console.log(r);
 
     this.state.elementsArray.forEach( (e) => {
         Object.keys(e).forEach( (key) => {
@@ -204,22 +203,18 @@ class Kinematics extends Component {
       tomato = this.state.elementsArray[i];
 
       tomato.xEnd = math.eval(tomato.xStart + "+" + tomato.xVelocity + '*' + timeValue);
-      console.log(tomato);
       tomato.yEnd = math.eval(tomato.yStart + "+" + '0.5' + '*' + gValue + '*' + timeValue + '^2');
-      console.log(tomato, timeValue, gValue);
       break;
     }
   }
 
       this.setState( {anim: true} );
-      console.log(tomato);
     this.state.elementsArray[i].yEnd = tomato.yEnd;
     this.state.elementsArray[i].xEnd = tomato.xEnd;
     return tomato.xEnd + ',' + tomato.yEnd;
   }
 
   reload() {
-    console.log(this.state.const_values);
     this.setState({anim: false, values: JSON.parse(JSON.stringify(this.state.const_values))});
   }
 }

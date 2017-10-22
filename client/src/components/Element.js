@@ -57,8 +57,6 @@ class Element extends Component {
 
   static isElementInAnotherElement(thisOne, inThisOne)
   {
-    console.log(thisOne);
-    console.log(inThisOne);
 
     let leftX = inThisOne.x - inThisOne.xSize/2;
     let rightX = inThisOne.x + inThisOne.xSize/2;
@@ -75,7 +73,6 @@ class Element extends Component {
         result = true;
       }
     }
-    console.log("isElementInAnotherElement returns " + result);
 
     return result;
   }

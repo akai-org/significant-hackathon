@@ -18,17 +18,13 @@ class Equation {
             helper = this.replaceReferenceWithValue(helper, elementsArray);
         }
 
-        console.log("Equation.calculate: about to eval: " + helper);
         let result = math.eval(helper);
 
-        console.log("Equation.calculate: after eval: " + result);
         return result;
     }
 
     static replaceReferenceWithValue(helper, elementsArray)
     {
-        console.log('Equation.replaceReferenceWithValue : ', helper, elementsArray);
-
 
         let firstPercent = helper.indexOf('%');
         let secondPercent = helper.indexOf('%', firstPercent + 1);
@@ -38,7 +34,6 @@ class Equation {
 
         let result = helper.replace(oldSubString, newSubString);
 
-        console.log("Equation.replaceReferenceWithValue: result : " + result);
         return result;
     }
 
@@ -64,7 +59,6 @@ class Equation {
             result = '0';
         }
 
-        console.log('Equation.getReferenceValue: returns: ' + result);
         return result;
     }
 }

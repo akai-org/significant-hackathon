@@ -15,27 +15,22 @@ class Result {
   isTrue(elementsArray){
     if(this.relation.localeCompare('=') === 0)
     {
-      console.log('= relation');
       return Equation.calculate(this.leftSide, elementsArray) === Equation.calculate(this.rightSide, elementsArray);
     }
     else if(this.relation.localeCompare('>=') === 0)
     {
-      console.log('>= relation');
       return Equation.calculate(this.leftSide, elementsArray) >= Equation.calculate(this.rightSide, elementsArray);
     }
     else if(this.relation.localeCompare('>') === 0)
     {
-      console.log('> relation');
       return Equation.calculate(this.leftSide, elementsArray) > Equation.calculate(this.rightSide, elementsArray);
     }
     else if(this.relation.localeCompare('<=') === 0)
     {
-      console.log('<= relation');
       return Equation.calculate(this.leftSide, elementsArray) <= Equation.calculate(this.rightSide, elementsArray);
     }
     else if(this.relation.localeCompare('<') === 0)
     {
-      console.log('< relation');
       return Equation.calculate(this.leftSide, elementsArray) < Equation.calculate(this.rightSide, elementsArray);
     }
     else if(this.relation.localeCompare('isIn') === 0)
@@ -47,7 +42,6 @@ class Result {
     }
     else
     {
-      console.log('Relation unknown ' + this.relation);
       return false;
     }
   }
