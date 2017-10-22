@@ -146,10 +146,10 @@ class Kinematics extends Component {
 
 
     //change symbols to known values
-    for(let i=0 ; i<dropareas.length ; i++)
+    for(let i=0 ; i<equations.length ; i++)
     {
         this.state.values.forEach( (v) => {
-            if(v.known.localeCompare('true') === 0  &&  equations[i].indexOf(v.name) != -1){
+            if(v.known != null && v.known.localeCompare('true') === 0  &&  equations[i].indexOf(v.name) != -1){
                 equations[i] = equations[i].replace(v.name, v.value);
             }
         });
@@ -176,9 +176,9 @@ class Kinematics extends Component {
     }
 
     //fill values with calculated value
-    for(let i=0 ; i<this.state.values.size() ; i++)
+    for(let i=0 ; i<this.state.values.length ; i++)
     {
-        if(this.state.values[i].known.localeCompare('false') == 0)
+        if(this.state.values[i].known != null && this.state.values[i].known.localeCompare('false') == 0)
         {
             equationsMapped.forEach( (e) => {
                if(e.leftSide.localeCompare(this.state.values[i].name) == 0)
@@ -191,8 +191,8 @@ class Kinematics extends Component {
     }
 
     //check if all values have their value field filled
-    for(let i=0 ; i<this.state.values.size() ; i++) {
-        if (this.state.values[i].known.localeCompare('false') == 0) {
+    for(let i=0 ; i<this.state.values.length ; i++) {
+        if (this.state.values[i].known != null && this.state.values[i].known.localeCompare('false') == 0) {
             result = 'Value ' + this.state.values[i].name + ' has not been calculated';
             break;
         }
@@ -205,27 +205,27 @@ class Kinematics extends Component {
 
     //calculate tomato coords
     let timeValue, gValue;
-    for(let i=0 ; i<this.state.values.size() ; i++) {
-        if (this.state.values[i].name.localeCompare('t') == 0) {
+    for(let i=0 ; i<this.state.values.length ; i++) {
+        if (this.state.values[i].known != null && this.state.values[i].name.localeCompare('t') == 0) {
             timeValue = this.state.values[i].value;
         }
-        else if(this.state.values[i].name.localeCompare('t') == 0) {
+        else if(this.state.values[i].known != null && this.state.values[i].name.localeCompare('t') == 0) {
             gValue = this.state.values[i].value;
         }
     }
 
     let tomato;
-    for(let i=0 ; i<this.state.elementsArray.size() ; i++) {
-        if(this.state.elementsArray[i].name.localeCompare('Tomato') == 0) {
-            tomato = this.state.elementsArray[i];
+    for(let i=0 ; i<this.state.elementsArray.length ; i++) {
+      if(this.state.elementsArray[i].name.localeCompare('Tomato') == 0) {
+      tomato = this.state.elementsArray[i];
 
-            tomato.xEnd = math.eval(tomato.xVelocity + '*' + timeValue);
-            tomato.yEnd = math.eval('0.5' + '*' + gValue + timeValue + '^2');
-        }
+      tomato.xEnd = math.eval(tomato.xVelocity + '*' + timeValue);
+      tomato.yEnd = math.eval('0.5' + '*' + gValue + timeValue + '^2');
     }
+  }
 
     this.setState( {anim: true} );
-    return tomato.xEnd + ',' + tomato.yEnd;
+    // return tomato.xEnd + ',' + tomato.yEnd;
   }
 }
 
