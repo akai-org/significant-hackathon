@@ -133,14 +133,14 @@ class Kinematics extends Component {
 
     this.state.elementsArray.forEach( (e) => {
         Object.keys(e).forEach( (key) => {
-            if(e[key].indexOf('%') != -1){
+            if(e[key].indexOf && e[key].indexOf('%') != -1){
                 e[key] = Equation.replaceReferenceWithValue(e[key], this.state.elementsArray);
             }
         });
     });
 
 
-    let equations = ["t=X/Vxp", 'Hp=0.5*g*t^2'];
+    let equations = r;//["t=X/Vxp", 'Hp=0.5*g*t^2'];
     let result = '';
 
     for( let j=0 ; j<equations.length ; j++) {//this many tries, cause there are this many equations
@@ -197,8 +197,8 @@ class Kinematics extends Component {
       tomato = this.state.elementsArray[i];
 
       tomato.xEnd = math.eval(tomato.xVelocity + '*' + timeValue);
-      tomato.yEnd = math.eval('0.5' + '*' + gValue + timeValue + '^2');
-      console.log(tomato);
+      tomato.yEnd = math.eval('0.5' + '*' + gValue + '*' + timeValue + '^2');
+      console.log(tomato, timeValue, gValue);
       break;
     }
   }
