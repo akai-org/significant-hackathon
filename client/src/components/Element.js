@@ -40,7 +40,7 @@ class Element extends Component {
     return (
       <div>
         <img id={this.props.data.name} src={
-          (this.props.data.imageAfterAnimationUrl && (this.yEnd > 95)) ?  this.props.data.imageAfterAnimationUrl : this.props.data.imageUrl
+          (this.props.data.imageAfterAnimationUrl && (this.yEnd > 95) && (this.props.anim)) ?  this.props.data.imageAfterAnimationUrl : this.props.data.imageUrl
         } style={this.imgStyle}/>
 
       </div>
