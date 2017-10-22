@@ -136,7 +136,6 @@ class Kinematics extends Component {
           r[i] += ee.querySelector('.label').innerHTML
       })
     })
-    console.log(r);
 
     this.state.elementsArray.forEach( (e) => {
         Object.keys(e).forEach( (key) => {
@@ -227,8 +226,7 @@ class Kinematics extends Component {
       changed ? setTimeout( () =>
           this.setState( {anim: true} )
       , 1200) : this.setState( {anim: true} );
-    // this.state.elementsArray[i].yEnd = tomato.yEnd;
-    // this.state.elementsArray[i].xEnd = tomato.xEnd;
+
     return tomato.xEnd + ',' + tomato.yEnd;
   }
 
