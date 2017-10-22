@@ -23,6 +23,7 @@ class Element extends Component {
     if(!this.props) return false;
     for(const key in this.props.data) {
       if( this.props.data[key].indexOf('%')!= -1) {
+        console.log('tutaj', key, this.props.data[key]);
         this[key] = Equation.replaceReferenceWithValue(key, this.props.elements);
       } else {
         this[key] = this.props.data[key];
