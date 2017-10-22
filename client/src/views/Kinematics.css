@@ -163,6 +163,7 @@ button {
   border: none;
   outline: none;
   font-size: 26px;
+  font-family: 'Gloria Hallelujah', cursive;
 }
 button:hover {
   cursor: pointer;
