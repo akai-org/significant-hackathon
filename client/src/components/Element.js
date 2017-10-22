@@ -48,7 +48,7 @@ class Element extends Component {
     };
 
     return (
-      <img src={this.props.data.imageUrl} style={this.imgStyle}/>
+      <img id={this.props.data.name} src={this.props.data.imageUrl} style={this.imgStyle}/>
     )
   }
 
