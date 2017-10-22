@@ -145,7 +145,7 @@ class Kinematics extends Component {
     });
 
 
-    let equations = ["t=X/Vxp", 'Hp=0.5*g*t^2'];
+    let equations = r;//["t=X/Vxp", 'Hp=0.5*g*t^2'];
     let result = '';
 
     for( let j=0 ; j<equations.length ; j++) {//this many tries, cause there are this many equations
@@ -202,10 +202,9 @@ class Kinematics extends Component {
       if(this.state.elementsArray[i].name.localeCompare('Tomato') == 0) {
       tomato = this.state.elementsArray[i];
 
-      tomato.xEnd = math.eval(tomato.xVelocity + '*' + timeValue);
-      tomato.yEnd = math.eval('0.5' + '*' + gValue + '*' + timeValue + '^2');
+      tomato.xEnd = math.eval(tomato.xStart + "+" + tomato.xVelocity + '*' + timeValue);
       console.log(tomato);
-      tomato.yEnd = math.eval('0.5' + '*' + gValue + '*' + timeValue + '^2');
+      tomato.yEnd = math.eval(tomato.yStart + "+" + '0.5' + '*' + gValue + '*' + timeValue + '^2');
       console.log(tomato, timeValue, gValue);
       break;
     }
