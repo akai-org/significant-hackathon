@@ -42,19 +42,6 @@ module Api
             "y":""
         },
         {
-            "name":"Tomato",
-            "imageUrl":"/images/Tomato.png",
-            "xSize":"4",
-            "ySize":"2",
-            "xStart":"53",
-            "yStart":"5",
-            "isConstant":"false",
-            "xVelocity":"%Plane.xVelocity%",
-            "yVelocity":"%Plane.yVelocity%",
-            "x":"",
-            "y":""
-        },
-        {
             "name":"Pot",
             "imageUrl":"/images/Pot.png",
             "xSize":"10",
@@ -64,6 +51,19 @@ module Api
             "isConstant":"true",
             "xVelocity":"",
             "yVelocity":"",
+            "x":"",
+            "y":""
+        },
+        {
+            "name":"Tomato",
+            "imageUrl":"/images/Tomato.png",
+            "xSize":"4",
+            "ySize":"2",
+            "xStart":"53",
+            "yStart":"5",
+            "isConstant":"false",
+            "xVelocity":"%Plane.xVelocity%",
+            "yVelocity":"%Plane.yVelocity%",
             "x":"",
             "y":""
         }
