@@ -23,8 +23,7 @@ class Element extends Component {
     if(!this.props) return false;
     if(!this.props.data) return false;
     for(const key in this.props.data) {
-      if( this.props.data[key].indexOf && this.props.data[key].indexOf('%')!= -1) {
-        console.log('tutaj', key, this.props.data[key]);
+      if( this.props.data[key].indexOf('%')!= -1) {
         this[key] = Equation.replaceReferenceWithValue(this.props.data[key], this.props.elements);
       } else {
         this[key] = this.props.data[key];
@@ -48,7 +47,6 @@ class Element extends Component {
 
   static isElementInAnotherElement(thisOne, inThisOne)
   {
-    console.log("Element.isElementInAnotherElement start, elements: ");
     console.log(thisOne);
     console.log(inThisOne);
 
@@ -86,8 +84,6 @@ class Element extends Component {
           result = i;
       }
     );
-
-
 
     return result;
   }

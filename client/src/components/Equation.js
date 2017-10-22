@@ -12,7 +12,6 @@ class Equation {
     }
 
     static calculate(equation, elementsArray){
-        console.log("Equation.calculate: start", equation);
         let helper = equation;
         while(helper.indexOf('%') !== -1)
         {
@@ -36,9 +35,6 @@ class Equation {
 
         let oldSubString = helper.substring(firstPercent, secondPercent - firstPercent + 1);
         let newSubString = Equation.getReferenceValue(oldSubString, elementsArray);
-
-        console.log('oldSubString : ', oldSubString);
-        console.log('newSubString : ', newSubString);
 
         let result = helper.replace(oldSubString, newSubString);
 

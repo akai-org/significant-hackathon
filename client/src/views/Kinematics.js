@@ -25,8 +25,6 @@ class Kinematics extends Component {
         this.state = {
             elementsArray: []
         };
-
-
     }
 
     componentWillMount() {
@@ -149,31 +147,22 @@ class Kinematics extends Component {
         for (let i=0 ; i<equations.length ; i++) {
             try{
                 //try to calculate value on the right, and assign it to the left variable
-                console.log('values in try, might replace in equation : ', equations[i]);
-                console.log(this.state.values);
                 //update known values
                 this.state.values.forEach( (v) => {
                     if(v.known != null && v.known.localeCompare('true') === 0  &&  equations[i].indexOf(v.name) != -1){
                         equations[i] = equations[i].replace(v.name, v.value);
                     }
                 });
-                console.log('equation after replacements : ', equations[i]);
 
                 //evaluate
                 let eq = new Equation(equations[i]);
 
                 for(let k=0 ; k<this.state.values.length ; k++) {
                     if(eq.leftSide.localeCompare(this.state.values[k].name) == 0) {
-                        console.log('calculated some value : ', this.state.values[k]);
-
                         this.state.values[k].known = 'true';
                         this.state.values[k].value = eq.calculatedRightSide;
                     }
                 }
-
-                console.log('values after adding new one', this.state.values);
-
-
             }
             catch(e) {
                 //nothing yet
@@ -181,98 +170,9 @@ class Kinematics extends Component {
         }
     }
 
-    // for (let i=0 ; i<equations.length ; i++) {
-    //   try{
-    //       //try to calculate value on the right, and assign it to the left variable
-    //
-    //       //update known values
-    //       this.state.values.forEach( (v) => {
-    //           if(v.known != null && v.known.localeCompare('true') === 0  &&  equations[i].indexOf(v.name) != -1){
-    //               equations[i] = equations[i].replace(v.name, v.value);
-    //           }
-    //       });
-    //
-    //       //evaluate
-    //       let eq = new Equation(equations[i]);
-    //
-    //       for(let k=0 ; k<this.state.values.length ; k++) {
-    //           if(eq.leftSide.localeCompare(this.state.values[i].name) == 0) {
-    //               this.state.values[i].known = 'true';
-    //               this.state.values[i].value = e.calculatedRightSide;
-    //           }
-    //       }
-    //   }
-    //   catch(e) {
-    //       //nothing yet
-    //   }
-    // }
-    //
-    // //change symbols to known values
-    // for(let i=0 ; i<equations.length ; i++)
-    // {
-    //     this.state.values.forEach( (v) => {
-    //         if(v.known != null && v.known.localeCompare('true') === 0  &&  equations[i].indexOf(v.name) != -1){
-    //             equations[i] = equations[i].replace(v.name, v.value);
-    //         }
-    //     });
-    // }
-    // console.log(equations);
-    //
-    // //map to Equations objects
-    // let equationsMapped = [];
-    //
-    // equations.forEach( (o) => {
-    //     try{
-    //         equationsMapped.push(new Equation(o));
-    //     } //TODO eval on the right side might crash if user left an unknown var there
-    //     catch (e)
-    //     {
-    //         console.log(e);
-    //         result = 'There are unknown variables on the right side of the equation';
-    //         return;
-    //     }
-    // });
-    //
-    // if(result.localeCompare('') != 0)
-    // {
-    //     console.log('returning result', result);
-    //     return result;
-    // }
-    //
-    // //fill values with calculated value
-    // for(let i=0 ; i<this.state.values.length ; i++)
-    // {
-    //     if(this.state.values[i].known != null && this.state.values[i].known.localeCompare('false') == 0)
-    //     {
-    //         equationsMapped.forEach( (e) => {
-    //            if(e.leftSide.localeCompare(this.state.values[i].name) == 0)
-    //            {
-    //                this.state.values[i].known = 'true';
-    //                this.state.values[i].value = e.calculatedRightSide;
-    //            }
-    //         });
-    //     }
-    // }
-    //
-    // //check if all values have their value field filled
-    // for(let i=0 ; i<this.state.values.length ; i++) {
-    //     if (this.state.values[i].known != null && this.state.values[i].known.localeCompare('false') == 0) {
-    //         result = 'Value ' + this.state.values[i].name + ' has not been calculated';
-    //         break;
-    //     }
-    // }
-    //
-    // if(result.localeCompare('') != 0)
-    // {
-    //     console.log('returning result', result);
-    //     return result;
-    // }
-
-    //calculate tomato coords
-
-    console.log(this.state.values);
-
     let timeValue, gValue;
+    let valuesResolved = true;
+
     for(let i=0 ; i<this.state.values.length ; i++) {
         if (this.state.values[i].known != null && this.state.values[i].name.localeCompare('t') == 0) {
             timeValue = this.state.values[i].value;
@@ -280,7 +180,16 @@ class Kinematics extends Component {
         else if(this.state.values[i].known != null && this.state.values[i].name.localeCompare('g') == 0) {
             gValue = this.state.values[i].value;
         }
+
+        if (this.state.values[i].known != null && this.state.values[i].known.localeCompare('false') == 0) {
+            valuesResolved = false;
+        }
     }
+
+    if(valuesResolved == false){
+        return 'Not all variables have been resolved';
+    }
+
 
     let tomato;
     for(let i=0 ; i<this.state.elementsArray.length ; i++) {
@@ -294,9 +203,9 @@ class Kinematics extends Component {
     }
   }
 
-
       this.setState( {anim: true} );
-    // return tomato.xEnd + ',' + tomato.yEnd;
+      console.log(tomato);
+    return tomato.xEnd + ',' + tomato.yEnd;
   }
 }
 
