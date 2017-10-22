@@ -136,15 +136,8 @@ class Kinematics extends Component {
       )].forEach(ee => {
           r[i] += ee.querySelector('.label').innerHTML
       })
-<<<<<<< HEAD
     })
     console.log(r);
-
-    this.setState( {anim: true} );
-=======
-  })
-  console.log(r);
-
 
     let equations = r;
     let result = '';
@@ -231,8 +224,8 @@ class Kinematics extends Component {
         }
     }
 
+    this.setState( {anim: true} );
     return tomato.xEnd + ',' + tomato.yEnd;
->>>>>>> 1f04b4b915d43bc5a9229374a31eb3ba9257eb94
   }
 }
 
