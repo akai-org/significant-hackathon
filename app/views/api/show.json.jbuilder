@@ -17,6 +17,7 @@ json.Elements @task.elements.sort_by(&:layer) do |element|
   json.x element.x
   json.y element.y
   json.imageUrl "https://s3.eu-central-1.amazonaws.com/looks-tasty" + element.image.path
+  json.imageAfterAnimationUrl "https://s3.eu-central-1.amazonaws.com/looks-tasty" + element.image_after_animation.path
 end
 
 standard_elements = [Value.new(name: "+"), Value.new(name: "*"),
