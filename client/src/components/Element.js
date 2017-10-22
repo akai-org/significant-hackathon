@@ -30,6 +30,10 @@ class Element extends Component {
       }
     }
 
+    let pot = this.props.elements.filter( e => {
+      return e.name === 'Pot'
+    });
+
     this.imgStyle = {
       width: `${this.xSize}%`,
       position: 'absolute',
@@ -40,7 +44,8 @@ class Element extends Component {
     return (
       <div>
         <img id={this.props.data.name} src={
-          (this.props.data.imageAfterAnimationUrl && (this.yEnd > 95) && (this.props.anim)) ?  this.props.data.imageAfterAnimationUrl : this.props.data.imageUrl
+          (this.props.data.imageAfterAnimationUrl && (this.yEnd > 95) && (this.props.anim)
+            && !( (this.xEnd >= (pot[0].xStart-pot[0].xSize/2)) && (this.xEnd <= (pot[0].xStart+pot[0].xSize/2)) ) ) ?  this.props.data.imageAfterAnimationUrl : this.props.data.imageUrl
         } style={this.imgStyle}/>
 
       </div>
