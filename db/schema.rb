@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021235435) do
+ActiveRecord::Schema.define(version: 20171022040139) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -60,6 +60,12 @@ ActiveRecord::Schema.define(version: 20171021235435) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.string "layer"
+    t.string "xEnd"
+    t.string "yEnd"
+    t.string "image_after_animation_file_name"
+    t.string "image_after_animation_content_type"
+    t.integer "image_after_animation_file_size"
+    t.datetime "image_after_animation_updated_at"
     t.index ["task_id"], name: "index_elements_on_task_id"
   end
 

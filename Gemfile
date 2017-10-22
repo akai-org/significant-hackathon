@@ -17,6 +17,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
 
 gem 'activeadmin'
 gem 'devise'
