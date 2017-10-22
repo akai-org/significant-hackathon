@@ -1,6 +1,6 @@
 ActiveAdmin.register Element do
   belongs_to :task
-  fields = %i[name xSize ySize xStart yStart xEnd yEnd isConstant xVelocity yVelocity x y layer image]
+  fields = %i[name xSize ySize xStart yStart xEnd yEnd isConstant xVelocity yVelocity x y layer image image_after_animation]
   permit_params fields
 
   form do |f|
