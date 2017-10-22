@@ -17,12 +17,12 @@ class Element extends Component {
   }
 
   finishAnimation(st) {
-    this.imgStyle = {
-      width: `${this.xSize}%`,
-      position: 'absolute',
-      top: `${this.yEnd}%`,
-      left: `${this.xEnd}%`,
-    };
+    // this.imgStyle = {
+    //   width: `${this.xSize}%`,
+    //   position: 'absolute',
+    //   top: `${this.yEnd}%`,
+    //   left: `${this.xEnd}%`,
+    // };
   }
 
   componentWillMount() {
@@ -48,7 +48,9 @@ class Element extends Component {
     };
 
     return (
-      <img id={this.props.data.name} src={this.props.data.imageUrl} style={this.imgStyle}/>
+      <div>
+      { ((this.yEnd <= 0) && (!this.props.imageAfterAnimationUrl)) ? <img id={this.props.data.name} src={this.props.data.imageUrl} style={this.imgStyle}/> : <img id={this.props.data.name} src={this.props.data.imageAfterAnimationUrl} style={this.imgStyle}/> }
+      </div>
     )
   }
 
