@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021235435) do
+ActiveRecord::Schema.define(version: 20171022011239) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20171021235435) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.string "layer"
+    t.string "xEnd"
+    t.string "yEnd"
     t.index ["task_id"], name: "index_elements_on_task_id"
   end
 
