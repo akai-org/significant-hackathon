@@ -1,6 +1,5 @@
 {
   "name": "significant-hackathon",
-  "private": true,
   "dependencies": {},
   "engines": {
     "node": "6.3.1"
@@ -9,5 +8,6 @@
     "build": "cd client && npm install && npm run build && cd ..",
     "deploy": "cp -a client/build/. public/",
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
-  }
+  },
+  "background": "#c1c1c1"
 }
